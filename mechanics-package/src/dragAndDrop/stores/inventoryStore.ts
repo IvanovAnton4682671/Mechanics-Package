@@ -1,8 +1,8 @@
-import type { Item } from "../types/interfaces";
+import type { myItem } from "../items/types";
 import type { myContainer } from "../types/types";
 import { create } from "zustand";
-import type { InventoryState } from "../types/interfaces";
-import { chestTestItems, inventoryTestItems } from "../types/consts";
+import type { IInventoryState } from "./interfaces";
+import { CHEST_TEST_ITEMS, INVENTORY_TEST_ITEMS } from "../types/consts";
 
 /**
  * Проверяет, можно ли переместить предмет в целевой контейнер
@@ -11,7 +11,7 @@ import { chestTestItems, inventoryTestItems } from "../types/consts";
  * @param targetContainer - проверяемый контейнер
  * @returns boolean - можно или нельзя переместить предмет в целевой контейнер
  */
-function canMoveItem(item: Item, targetContainer: myContainer): boolean {
+function canMoveItem(item: myItem, targetContainer: myContainer): boolean {
     return item.allowedContainers.includes(targetContainer as any);
 };
 
@@ -23,7 +23,7 @@ function canMoveItem(item: Item, targetContainer: myContainer): boolean {
  * @param equipment - любой предмет, лежащий в слоте левой руки
  * @returns boolean, boolean - флаги можно ли экипировать предмет и нужно ли очищать слот левой руки
  */
-function checkTwoHandedWeaponRules(item: Item, targetSlot: myContainer, equipment: any): {canEquip: boolean, needToClearLeftHand: boolean} {
+function checkTwoHandedWeaponRules(item: myItem, targetSlot: myContainer, equipment: any): {canEquip: boolean, needToClearLeftHand: boolean} {
     if (item.type === "twoHandWeapon" && targetSlot === "rightHand") {
         // Если в левой руке уже есть предмет - запрещаем надевать двуручное оружие
         if (equipment.leftHand !== null) {
@@ -52,7 +52,7 @@ function checkTwoHandedWeaponRules(item: Item, targetSlot: myContainer, equipmen
  * @param container - проверяемый контейнер
  * @returns возвращает массив предметов/null`ов, или просто null, если контейнер является слотом экипировки
  */
-function getContainerItems(state: InventoryState, container: myContainer): (Item | null)[] | null {
+function getContainerItems(state: IInventoryState, container: myContainer): (myItem | null)[] | null {
     if (container === "chest") return state.chestItems;
     if (container === "inventory") return state.inventoryItems;
     return null;
@@ -62,17 +62,17 @@ function getContainerItems(state: InventoryState, container: myContainer): (Item
  * Хранилище состояния инвентаря, созданное с помощью Zustand.
  * Управляет всеми предметами в сундуке и инвентаре, а также операциями с ними
  */
-export const useInventoryStore = create<InventoryState>((set, get) => ({
+export const useInventoryStore = create<IInventoryState>((set, get) => ({
     /**
      * Начальное состояние сундука: 25 ячеек, первые 5 заполнены тестовыми предметами
      * Остальные ячейки пусты (null)
      */
-    chestItems: chestTestItems,
+    chestItems: CHEST_TEST_ITEMS,
 
     /**
      * Начальное состояние инвентаря: 15 ячеек, первые 3 заполнены тестовыми предметами
      */
-    inventoryItems: inventoryTestItems,
+    inventoryItems: INVENTORY_TEST_ITEMS,
 
     /**
      * Начальное состояние экипировки - все слоты пусты
@@ -95,53 +95,6 @@ export const useInventoryStore = create<InventoryState>((set, get) => ({
      * Автоматически определяет тип операции (перемещение или замена)
      * в зависимости от того, пуста ли целевая ячейка
      */
-    /*moveItem: (fromContainer, toContainer, fromIndex, toIndex) => {
-        const state = get();
-
-        // Если перемещаем внутри одного контейнера
-        if (fromContainer === toContainer) {
-            // Если перемещаем в свою же ячейку - ничего не делаем
-            if (fromIndex === toIndex) {
-                return;
-            } else {
-                // Если перемещаем в другую ячейку - создаем копию массива для иммутабельного обновления
-                const array = [...state[`${ fromContainer }Items`]];
-                const itemToMove = array[fromIndex];
-
-                // Если целевая ячейка пуста - просто перемещаем предмет
-                if (!array[toIndex]) {
-                    array[fromIndex] = null; // Освобождаем исходную ячейку
-                    array[toIndex] = itemToMove // Занимаем целевую ячейку
-
-                    set({
-                        [`${ fromContainer }Items`]: array
-                    });
-                } else {
-                    // Если целевая ячейка занята - меняем предметы местами
-                    get().swapItems(fromContainer, toContainer, fromIndex, toIndex);
-                }
-            }
-        } else {
-            // Если перемещаем между разными контейнерами
-            const fromArray = [...state[`${ fromContainer }Items`]];
-            const toArray = [...state[`${ toContainer }Items`]];
-            const itemToMove = fromArray[fromIndex];
-
-            // Если целевая ячейка пустая
-            if (!toArray[toIndex]) {
-                fromArray[fromIndex] = null; // Освобождаем исходную ячейку
-                toArray[toIndex] = itemToMove; // Занимаем целевую ячейку
-
-                set({
-                    [`${ fromContainer }Items`]: fromArray,
-                    [`${ toContainer }Items`]: toArray
-                });
-            } else {
-                // Если целевая ячейка не пуста - меняем предметы местами
-                get().swapItems(fromContainer, toContainer, fromIndex, toIndex);
-            }
-        }
-    },*/
     moveItem: (fromContainer, toContainer, fromIndex, toIndex) => {
         const state = get();
         
@@ -152,8 +105,8 @@ export const useInventoryStore = create<InventoryState>((set, get) => ({
         // Если перемещаем между двумя слотами экипировки
         if (isFromEquipment && isToEquipment) {
             get().swapEquipmentSlots(
-                fromContainer as keyof InventoryState['equipment'], 
-                toContainer as keyof InventoryState['equipment']
+                fromContainer as keyof IInventoryState['equipment'], 
+                toContainer as keyof IInventoryState['equipment']
             );
             return;
         }
@@ -169,25 +122,25 @@ export const useInventoryStore = create<InventoryState>((set, get) => ({
             // Если целевая ячейка занята - пытаемся свапнуть
             if (toArray[toIndex] !== null) {
                 get().swapEquipmentWithContainer(
-                    fromContainer as keyof InventoryState['equipment'],
+                    fromContainer as keyof IInventoryState['equipment'],
                     toContainer,
                     toIndex
                 );
                 return;
             } else {
                 // Если целевая ячейка пуста - просто снимаем
-                get().unequipItem(fromContainer as keyof InventoryState['equipment'], toContainer, toIndex);
+                get().unequipItem(fromContainer as keyof IInventoryState['equipment'], toContainer, toIndex);
                 return;
             }
         }
 
         if (isToEquipment) {
-            get().equipItem(fromContainer, fromIndex, toContainer as keyof InventoryState['equipment']);
+            get().equipItem(fromContainer, fromIndex, toContainer as keyof IInventoryState['equipment']);
             return;
         }
         
         if (isFromEquipment) {
-            get().unequipItem(fromContainer as keyof InventoryState['equipment'], toContainer, toIndex);
+            get().unequipItem(fromContainer as keyof IInventoryState['equipment'], toContainer, toIndex);
             return;
         }
 
@@ -255,38 +208,6 @@ export const useInventoryStore = create<InventoryState>((set, get) => ({
      * Метод для принудительной замены предметов местами.
      * Используется когда обе ячейки заняты
      */
-    /*swapItems: (fromContainer, toContainer, fromIndex, toIndex) => {
-        const state = get();
-
-        // Если меняем местами в одном контейнере
-        if (fromContainer === toContainer) {
-            const array = [...state[`${ fromContainer }Items`]];
-            const itemToMove = array[fromIndex];
-
-            // Меняем предметы местами в одном массиве
-            array[fromIndex] = array[toIndex];
-            array[toIndex] = itemToMove;
-
-            set({
-                [`${ fromContainer }Items`]: array
-            });
-        } else {
-            // Если меняем местами в разных контейнерах
-            const fromArray = [...state[`${ fromContainer }Items`]];
-            const toArray = [...state[`${ toContainer }Items`]];
-            const fromItem = fromArray[fromIndex];
-            const toItem = toArray[toIndex];
-
-            // Меняем предметы между массивами
-            fromArray[fromIndex] = toItem;
-            toArray[toIndex] = fromItem;
-
-            set({
-                [`${ fromContainer }Items`]: fromArray,
-                [`${ toContainer }Items`]: toArray
-            });
-        }
-    },*/
     swapItems: (fromContainer, toContainer, fromIndex, toIndex) => {
         const state = get();
         

@@ -1,9 +1,9 @@
 import { useInventoryStore } from "../stores/inventoryStore";
-import { Flex, Grid } from "@radix-ui/themes";
+import { Flex, Text, Separator, Grid } from "@radix-ui/themes";
 import ItemCell from "./ItemCell";
 
 /**
- * Компонент инвентаря игрока - отображает 15 ячеек (5x3 сетка) с предметами.
+ * Компонент инвентаря игрока - отображает сетку ячеек с предметами.
  * Аналогичен компоненту сундука, но с другим количеством ячеек
  */
 function Inventory() {
@@ -11,8 +11,10 @@ function Inventory() {
     const inventoryItems = useInventoryStore(state => state.inventoryItems);
 
     return(
-        <Flex width="100%" height="100%" justify="center" align="center">
-            <Grid columns="5" gap="3">
+        <Flex width="100%" height="100%" direction="column" justify="center" align="center" gap="3">
+            <Text size="5">Инвентарь</Text>
+            <Separator orientation="horizontal" size="4"/>
+            <Grid columns="8" gap="3">
                 {
                     // Проходим по всем ячейкам инвентаря
                     inventoryItems.map((item, index) => (

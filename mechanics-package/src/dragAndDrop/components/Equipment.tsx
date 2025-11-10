@@ -7,7 +7,7 @@ function Equipment() {
     const equipment = useInventoryStore(state => state.equipment);
 
     return(
-        <Flex width="100%" height="100%" direction="column" justify="center" align="center" gap="2">
+        <Flex width="100%" height="100%" direction="column" justify="center" align="center" gap="3">
             <Text size="5">Экипировка</Text>
             <Separator orientation="horizontal" size="4"/>
             <Flex width="100%" height="100%" direction="column" justify="center" align="center" gap="3">

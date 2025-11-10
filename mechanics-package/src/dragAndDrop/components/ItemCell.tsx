@@ -1,8 +1,8 @@
-import type { DragItem, ItemCellProps } from "../types/interfaces";
+import type { ItemCellProps, DragItem } from "../types/interfaces";
 import React from "react";
 import { useInventoryStore } from "../stores/inventoryStore";
 import { useDrag, useDrop } from "react-dnd";
-import { ItemTypes } from "../types/consts";
+import { ITEM_TYPES } from "../types/consts";
 import { Flex, Text } from "@radix-ui/themes";
 
 /**
@@ -11,7 +11,7 @@ import { Flex, Text } from "@radix-ui/themes";
  * 
  * @param id - уникальный идентификатор ячейки (индекс в массиве)
  * @param item - предмет в ячейке (или null, если ячейка пуста)
- * @param containerType - тип контейнера (сундук или инвентарь)
+ * @param containerType - тип контейнера (сундук, инвентарь, ячейка экипировки)
  */
 function ItemCell({ id, item, containerType } : ItemCellProps) {
     // Ref для DOM-элемента ячейки, необходим для работы Drag and Drop
@@ -25,7 +25,7 @@ function ItemCell({ id, item, containerType } : ItemCellProps) {
      */
     const [{ isDragging }, drag] = useDrag({
         // Тип перетаскиваемого элемента - должен совпадать с accept в useDrop
-        type: ItemTypes.ITEM,
+        type: ITEM_TYPES.ITEM,
 
         /**
          * Данные, которые передаются при перетаскивании.
@@ -60,12 +60,12 @@ function ItemCell({ id, item, containerType } : ItemCellProps) {
     });
 
     /**
-     * Настройка функциональности приема перетаскиваемых элементов (drop) для ячейки.
-     * useDrop hook предоставляет методы и состояние для приема элементов
+     * Настройка функциональности приёма перетаскиваемых элементов (drop) для ячейки.
+     * useDrop hook предоставляет методы и состояние для приёма элементов
      */
     const [{ isOver }, drop] = useDrop({
         // Типы элементов, которые эта ячейка может принимать
-        accept: ItemTypes.ITEM,
+        accept: ITEM_TYPES.ITEM,
 
         /**
          * Срабатывает, когда перетаскиваемый элемент находится над этой ячейкой.
@@ -74,7 +74,7 @@ function ItemCell({ id, item, containerType } : ItemCellProps) {
         hover: (draggedItem: DragItem) => {
             if (!ref.current) return;
 
-            // Если предмет перетаскивается над самой собой - игнорируем
+            // Если предмет перетаскивается над самим собой - игнорируем
             if (draggedItem.container === containerType && draggedItem.id === id) return;
         },
 
@@ -91,7 +91,7 @@ function ItemCell({ id, item, containerType } : ItemCellProps) {
         },
 
         /**
-         * Функция для сбора состояния приема элементов.
+         * Функция для сбора состояния приёма элементов.
          * isOver - true, когда над ячейкой находится перетаскиваемый элемент
          * canDrop - true, когда ячейка может принять перетаскиваемый элемент
          */
@@ -122,7 +122,7 @@ function ItemCell({ id, item, containerType } : ItemCellProps) {
             }}
         >
             {/* Отображаем название предмета или пустоту, если ячейка пуста */}
-            <Text>{ item === null ? "" : item.name }</Text>
+            <Text size="1">{ item === null ? "" : item.name }</Text>
         </Flex>
     )
 }

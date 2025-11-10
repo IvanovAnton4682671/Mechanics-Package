@@ -1,9 +1,9 @@
 import { useInventoryStore } from "../stores/inventoryStore";
-import { Flex, Grid } from "@radix-ui/themes";
+import { Flex, Text, Separator, Grid } from "@radix-ui/themes";
 import ItemCell from "./ItemCell";
 
 /**
- * Компонент сундука - отображает 25 ячеек (5x5 сетка) с предметами.
+ * Компонент сундука - отображает сетку ячеек с предметами.
  * Каждая ячейка является перетаскиваемой и может принимать предметы
  */
 function Chest() {
@@ -11,10 +11,12 @@ function Chest() {
     const chestItems = useInventoryStore(state => state.chestItems);
 
     return(
-        <Flex width="100%" height="100%" justify="center" align="center">
-            <Grid columns="5" gap="3">
+        <Flex width="100%" height="100%" direction="column" justify="center" align="center" gap="3">
+            <Text size="5">Сундук</Text>
+            <Separator orientation="horizontal" size="4"/>
+            <Grid columns="8" gap="3">
                 {
-                    // Проходим по всем ячейкам сундука и создаем компоненты ItemCell
+                    // Проходим по всем ячейкам сундука и создаём компоненты ItemCell
                     chestItems.map((item, index) => (
                         <ItemCell
                             key={ `chest-${ index }` } // Уникальный ключ для React

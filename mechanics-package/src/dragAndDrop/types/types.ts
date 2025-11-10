@@ -1,49 +1,24 @@
-import type { Item } from "./interfaces";
+import type { myEquipmentContainer } from "../items/equipment/types";
+import type { myItem } from "../items/types";
 
 /**
  * Тип контейнеров, между которыми можно перемещать предметы.
  * Это позволяет системе различать, откуда и куда перемещается предмет
  */
-export type myContainer = "chest"
-    | "inventory"
-    | "helmet"
-    | "gloves"
-    | "bracers"
-    | "shoulderPads"
-    | "leftHand"
-    | "rightHand"
-    | "chestArmor"
-    | "belt"
-    | "footArmor"
-    | "boots";
+export type myContainer = "chest" | myEquipmentContainer | "inventory";
 
 /**
  * Тип массива, который содержит предметы.
  * Такой массив состоит как из предметов, так и из пустых ячеек (null)
  */
-export type myItemArray = Item | null;
+export type myItemArray = Array<myItem | null>;
 
 /**
  * Тип ячейки контейнера, которая может принимать предмет или быть пустой (null)
  */
-export type myItemCell = Item | null;
-
-/**
- * Типы предметов для определения правил экипировки
- */
-export type myItemType = "helmet"
-    | "gloves"
-    | "bracers"
-    | "shoulderPads"
-    | "offHand"
-    | "twoHandWeapon"
-    | "oneHandWeapon"
-    | "chestArmor"
-    | "belt"
-    | "footArmor"
-    | "boots";
+export type myItemCell = myItem | null;
 
 /**
  * Тип для определения допустимых контейнеров для предмета
  */
-export type myAllowedContainers = myContainer[];
+export type myAllowedContainers = Array<myContainer>;

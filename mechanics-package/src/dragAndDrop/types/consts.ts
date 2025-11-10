@@ -1,4 +1,5 @@
-import type { myItemArray, myItemType, myAllowedContainers } from "./types";
+import type { myItemArray } from "./types";
+import { EQUIPMENT_ITEMS, EQUIPMENT_RULES } from "../items/equipment/consts";
 
 /**
  * Константы типов перетаскиваемых элементов.
@@ -10,78 +11,39 @@ import type { myItemArray, myItemType, myAllowedContainers } from "./types";
  * - ARMOR: "armor" (только для ячеек брони)
  * - POTION: "potion" (только для ячеек зелий)
  */
-export const ItemTypes = {
+export const ITEM_TYPES = {
     ITEM: "item"
 };
 
 /**
- * Правила экипировки для каждого типа предметов.
- * Определяет для каждого предмета экипировки массив подходящих контейнеров
+ * Тестовый массив сундука, в котором есть несколько предметов, а остальные ячейки пустые (null)
  */
-export const EQUIPMENT_RULES: Record<myItemType, myAllowedContainers> = {
-    // Броня
-    helmet: ["chest", "inventory", "helmet"],
-    gloves: ["chest", "inventory", "gloves"],
-    bracers: ["chest", "inventory", "bracers"],
-    shoulderPads: ["chest", "inventory", "shoulderPads"],
-    chestArmor: ["chest", "inventory", "chestArmor"],
-    belt: ["chest", "inventory", "belt"],
-    footArmor: ["chest", "inventory", "footArmor"],
-    boots: ["chest", "inventory", "boots"],
-    //Оружие
-    oneHandWeapon: ["chest", "inventory", "rightHand", "leftHand"],
-    twoHandWeapon: ["chest", "inventory", "rightHand"],
-    offHand: ["chest", "inventory", "leftHand"]
-};
-
-/**
- * Тестовый массив сундука, в котором первые 5 ячеек заполнены предметами, а остальные пустые (null)
- */
-export const chestTestItems: Array<myItemArray> = [
-    { id: 1, name: "Шлем", type: "helmet", allowedContainers: EQUIPMENT_RULES.helmet },
-    { id: 2, name: "Перчатки", type: "gloves", allowedContainers: EQUIPMENT_RULES.gloves },
-    { id: 3, name: "Наручи", type: "bracers", allowedContainers: EQUIPMENT_RULES.bracers },
-    { id: 4, name: "Наплечники", type: "shoulderPads", allowedContainers: EQUIPMENT_RULES.shoulderPads },
-    { id: 5, name: "Однмеч1", type: "oneHandWeapon", allowedContainers: EQUIPMENT_RULES.oneHandWeapon },
-    { id: 6, name: "Однмеч2", type: "oneHandWeapon", allowedContainers: EQUIPMENT_RULES.oneHandWeapon },
-    { id: 7, name: "Двмеч", type: "twoHandWeapon", allowedContainers: EQUIPMENT_RULES.twoHandWeapon },
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
+export const CHEST_TEST_ITEMS: myItemArray = [
+    EQUIPMENT_ITEMS[0],
+    EQUIPMENT_ITEMS[1],
+    EQUIPMENT_ITEMS[2],
+    EQUIPMENT_ITEMS[3],
+    EQUIPMENT_ITEMS[4],
+    EQUIPMENT_ITEMS[5],
+    EQUIPMENT_ITEMS[6],
+    EQUIPMENT_ITEMS[7],
+    null, null,
+    null, null, null, null, null, null, null, null, null, null,
+    null, null, null, null, null, null, null, null, null, null,
+    null, null, null, null, null, null, null, null, null, null
 ];
 
 /**
  * Аналогичный тестовый массив инвентаря персонажа
  */
-export const inventoryTestItems: Array<myItemArray> = [
-    { id: 1, name: "Щит", type: "offHand", allowedContainers: EQUIPMENT_RULES.offHand },
-    { id: 2, name: "Доспехи", type: "chestArmor", allowedContainers: EQUIPMENT_RULES.chestArmor },
-    { id: 3, name: "Пояс", type: "belt", allowedContainers: EQUIPMENT_RULES.belt },
-    { id: 4, name: "Поножи", type: "footArmor", allowedContainers: EQUIPMENT_RULES.footArmor },
-    { id: 5, name: "Сапоги1", type: "boots", allowedContainers: EQUIPMENT_RULES.boots },
-    { id: 6, name: "Сапоги2", type: "boots", allowedContainers: EQUIPMENT_RULES.boots },
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null
+export const INVENTORY_TEST_ITEMS: myItemArray = [
+    EQUIPMENT_ITEMS[8],
+    EQUIPMENT_ITEMS[9],
+    EQUIPMENT_ITEMS[10],
+    { id: 18, name: "Сапоги1", type: "boots", allowedContainers: EQUIPMENT_RULES.boots },
+    { id: 19, name: "Одноручный меч1", type: "oneHandWeapon", allowedContainers: EQUIPMENT_RULES.oneHandWeapon },
+    { id: 20, name: "Двуручный меч1", type: "twoHandWeapon", allowedContainers: EQUIPMENT_RULES.twoHandWeapon },
+    { id: 21, name: "Щит1", type: "offHand", allowedContainers: EQUIPMENT_RULES.offHand },
+    null, null, null, null, null, null, null,
+    null, null, null, null, null, null, null, null, null, null,
 ];

@@ -1,8 +1,7 @@
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { Flex, Dialog, Button } from "@radix-ui/themes";
-import ChestAndInventory from "./components/ChestAndInventory";
-import ChestEquipmentInventory from "./components/ChestEquipmentInventory";
+import SharedInventory from "./components/SharedInventory";
 
 function Main() {
     return(
@@ -17,7 +16,7 @@ function Main() {
                     <Dialog.Content maxWidth="100%">
                         <Dialog.Title/>
                         <Dialog.Description/>
-                        <ChestEquipmentInventory/>
+                        <SharedInventory/>
                     </Dialog.Content>
                 </Dialog.Root>
             </Flex>

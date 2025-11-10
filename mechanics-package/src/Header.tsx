@@ -5,7 +5,7 @@ import { SunIcon, MoonIcon } from "@radix-ui/react-icons";
 function Header({ changeTheme } : HeaderProps) {
     return(
         <Flex width="100%" height="100%" direction="column">
-            <Flex width="10%" height="100%" justify="center" align="center" direction="row" gap="3">
+            <Flex width="10%" height="100%" direction="row" justify="center" align="center" gap="3">
                 <Button variant="surface" onClick={() => changeTheme("light")}>
                     <SunIcon/>
                 </Button>

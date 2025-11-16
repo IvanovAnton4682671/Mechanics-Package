@@ -1,20 +1,29 @@
 import type { myItemArray, myItemCell, myContainer } from "../types/types";
 
 /**
- * Интерфейс состояния инвентаря, который управляет всеми предметами
- * в сундуке и инвентаре игрока, а также операциями перемещения
+ * Интерфейс состояния общего инвентаря, который управляет перемещениями всех предметов
+ * по сундуку, инвентарю и экипировки персонажа
  * 
- * @field chestItems - массив предметов в сундуке. Может содержать как предметы, так и пустые ячейки (null)
- * @field inventoryItems - массив предметов в инвентаре игрока. Также может содержать пустые ячейки
- * @field equipment - экипировка персонажа - отдельный объект с фиксированными слотами
- * @method moveItem - метод для перемещения предметов между ячейками и контейнерами
- * @method swapItems - метод для принудительной замены предметов местами
- * @method equipItem - метод для перемещения предметов в экипировку
- * @method unequipItem - метод для снятия предмета с экипировки
+ * @field chestItems - массив предметов, которые находятся в сундуке
+ * @field inventoryItems - массив предметов, которые находятся в инвентаре
+ * @field equipment - рекорд экипировки персонажа
+ * @method moveItem - главный метод, который определяет какой конкретный метод перемещения предмета(ов) нужно вызвать
+ * @method moveInsideContainer - метод перемещения предмета в контейнере
+ * @method moveBetweenContainers - метод перемещения предмета между контейнерами
+ * @method moveContainerSlot - метод перемещения предмета из контейнера в слот экипировки
+ * @method moveSlotContainer - метод перемещения предмета из слота экипировки в контейнер
+ * @method moveSlotSlot - метод перемещения предмета между слотами экипировки
+ * @method swapContainer - метод свапа предметов в контейнере
+ * @method swapContainers - метод свапа предметов между контейнерами
+ * @method swapContainerSlot - метод свапа предметов между контейнером и слотом экипировки
+ * @method swapSlotContainer - метод свапа предметов между слотом экипировки и контейнером
+ * @method swapSlots - метод свапа предметов между слотами экипировки
  */
 export interface IInventoryState {
     chestItems: myItemArray;
+
     inventoryItems: myItemArray;
+
     equipment: {
         helmet: myItemCell,
         gloves: myItemCell,
@@ -27,58 +36,115 @@ export interface IInventoryState {
         footArmor: myItemCell,
         boots: myItemCell
     };
+
     /**
-     * Метод для перемещения предметов между ячейками и контейнерами.
-     * Автоматически определяет, нужно ли просто переместить предмет или поменять местами
+     * Главный метод перемещения предметов. Сам определяет, что конкретно нужно сделать с предметом(ами)
      * 
-     * @param fromContainer - откуда перемещается предмет (сундук или инвентарь)
-     * @param toContainer - куда перемещается предмет (сундук или инвентарь)
-     * @param fromIndex - индекс исходной ячейки в массиве
-     * @param toIndex - индекс целевой ячейки в массиве
+     * @param fromContainer из какого контейнера перемещается предмет
+     * @param toContainer в какой контейнер перемещается предмет
+     * @param fromIndex с какой позиции перемещается предмет
+     * @param toIndex на какую позицию перемещается предмет
+     * @returns ничего
      */
     moveItem: (fromContainer: myContainer, toContainer: myContainer, fromIndex: number, toIndex: number) => void;
+
     /**
-     * Метод для принудительной замены предметов местами.
-     * Используется, когда обе ячейки заняты предметами
+     * Метод перемещения предмета в контейнере
      * 
-     * @param fromContainer - откуда перемещается предмет
-     * @param toContainer - куда перемещается предмет
-     * @param fromIndex - индекс исходной ячейки
-     * @param toIndex - индекс целевой ячейки
+     * @param container контейнер, в котором перемещается предмет
+     * @param fromIndex с какой позиции перемещается предмет
+     * @param toIndex на какую позицию перемещается предмет
+     * @returns ничего
      */
-    swapItems: (fromContainer: myContainer, toContainer: myContainer, fromIndex: number, toIndex: number) => void;
+    moveInsideContainer: (container: myContainer, fromIndex: number, toIndex: number) => void;
+
     /**
-     * Используется, когда нужно поменять предметы в двух ячейках экипировки
+     * Метод перемещения предмета между контейнерами
      * 
-     * @param fromSlot - из какого слота меняем
-     * @param toSlot - в какой слот меняем
+     * @param fromContainer из какого контейнера перемещается предмет
+     * @param toContainer в какой контейнер перемещается предмет
+     * @param fromIndex с какой позиции перемещается предмет
+     * @param toIndex на какую позицию перемещается предмет
+     * @returns ничего
      */
-    swapEquipmentSlots: (fromSlot: keyof IInventoryState["equipment"], toSlot: keyof IInventoryState["equipment"]) => void;
+    moveBetweenContainers: (fromContainer: myContainer, toContainer: myContainer, fromIndex: number, toIndex: number) => void;
+
     /**
-     * Метод для смены экипировки и предмета из контейнера.
-     * Используется, когда пытаемся сделать свап экипировкой с предметом из контейнера
+     * Метод перемещения предмета из контейнера в слот экипировки
      * 
-     * @param fromSlot - из какого слоте меняем
-     * @param toContainer - в каком контейнере меняем
-     * @param toIndex - в какую позицию кладём и меняем
+     * @param fromContainer из какого контейнера перемещается предмет
+     * @param fromIndex с какой позиции перемещается предмет
+     * @param toSlot в какой слот перемещается предмет
+     * @returns ничего
      */
-    swapEquipmentWithContainer: (fromSlot: keyof IInventoryState["equipment"], toContainer: myContainer, toIndex: number) => void;
+    moveContainerSlot: (fromContainer: myContainer, fromIndex: number, toSlot: keyof IInventoryState["equipment"]) => void;
+
     /**
-     * Метод для перемещения предметов в экипировку.
-     * Используется, когда предмет нужно надеть на персонажа
+     * Метод перемещения предмета из слота экипировки в контейнер
      * 
-     * @param fromContainer - откуда перемещается предмет
-     * @param fromIndex - индекс исходной ячейки
-     * @param toSlot - в какой слот экипировки перемещается предмет
+     * @param fromSlot из какого слота перемещается предмет
+     * @param toContainer в какой контейнер перемещается предмет
+     * @param toIndex на какую позицию перемещается предмет
+     * @returns ничего
      */
-    equipItem: (fromContainer: myContainer, fromIndex: number, toSlot: keyof IInventoryState["equipment"]) => void;
+    moveSlotContainer: (fromSlot: keyof IInventoryState["equipment"], toContainer: myContainer, toIndex: number) => void;
+
     /**
-     * Метод для снятия предмета с экипировки.
-     * Используется, когда нужно снять предмет с персонажа
+     * Метод перемещения предмета между слотами экипировки
      * 
-     * @param fromSlot - с какого слота экипировки снимается предмет
-     * @param toContainer - куда перемещается предмет
-     * @param toIndex - индекс целевой ячейки
+     * @param fromSlot из какого слота перемещается предмет
+     * @param toSlot в какой слот перемещается предмет
+     * @returns ничего
      */
-    unequipItem: (fromSlot: keyof IInventoryState["equipment"], toContainer: myContainer, toIndex: number) => void;
+    moveSlotSlot: (fromSlot: keyof IInventoryState["equipment"], toSlot: keyof IInventoryState["equipment"]) => void;
+
+    /**
+     * Метод свапа предметов в контейнере
+     * 
+     * @param targetContainer в каком контейнере свапаются предметы
+     * @param fromIndex с какой позиции перемещается предмет
+     * @param toIndex на какую позицию перемещается предмет
+     * @returns ничего
+     */
+    swapContainer: (targetContainer: myContainer, fromIndex: number, toIndex: number) => void;
+
+    /**
+     * Метод свапа предметов между контейнерами
+     * 
+     * @param fromContainer из какого контейнера свапается предмет
+     * @param toContainer в какой контейнер свапается предмет
+     * @param fromIndex с какой позиции свапается предмет
+     * @param toIndex на какую позицию свапается предмет
+     * @returns ничего
+     */
+    swapContainers: (fromContainer: myContainer, toContainer: myContainer, fromIndex: number, toIndex: number) => void;
+
+    /**
+     * Метод свапа предметов между контейнером и слотом экипировки
+     * 
+     * @param fromContainer из какого контейнера свапается предмет
+     * @param fromIndex с какой позиции свапается предмет
+     * @param toSlot в какой слот свапается предмет
+     * @returns ничего
+     */
+    swapContainerSlot: (fromContainer: myContainer, fromIndex: number, toSlot: keyof IInventoryState["equipment"]) => void;
+
+    /**
+     * Метод свапа предметов между слотом экипировки и контейнером
+     * 
+     * @param fromSlot из какого слота свапается предмет
+     * @param toContainer в какой контейнер свапается предмет
+     * @param toIndex на какую позицию свапается предмет
+     * @returns ничего
+     */
+    swapSlotContainer: (fromSlot: keyof IInventoryState["equipment"], toContainer: myContainer, toIndex: number) => void;
+
+    /**
+     * Метод свапа предметов между слотами экипировки
+     * 
+     * @param fromSlot из какого слота свапается предмет
+     * @param toSlot в какой слот свапается предмет
+     * @returns ничего
+     */
+    swapSlots: (fromSlot: keyof IInventoryState["equipment"], toSlot: keyof IInventoryState["equipment"]) => void;
 }

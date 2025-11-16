@@ -1,5 +1,6 @@
-import type { myItemArray } from "./types";
+import type { myItemArray, myItemCell } from "./types";
 import { EQUIPMENT_ITEMS, EQUIPMENT_RULES } from "../items/equipment/consts";
+import type { myEquipmentContainer } from "../items/equipment/types";
 
 /**
  * Константы типов перетаскиваемых элементов.
@@ -47,3 +48,19 @@ export const INVENTORY_TEST_ITEMS: myItemArray = [
     null, null, null, null, null, null, null,
     null, null, null, null, null, null, null, null, null, null,
 ];
+
+/**
+ * Тестовый рекорд экипировки персонажа
+ */
+export const EQUIPMENT_TEST_ITEMS: Record<myEquipmentContainer, myItemCell> = {
+    helmet: null,
+    gloves: null,
+    bracers: null,
+    shoulderPads: null,
+    leftHand: null,
+    rightHand: null,
+    chestArmor: null,
+    belt: null,
+    footArmor: null,
+    boots: null
+};

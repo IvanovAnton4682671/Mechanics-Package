@@ -9,9 +9,9 @@ import { Flex, Text } from "@radix-ui/themes";
  * Компонент ячейки предмета, который может быть перетаскиваемым (draggable)
  * и принимать перетаскиваемые предметы (droppable)
  * 
- * @param id - уникальный идентификатор ячейки (индекс в массиве)
- * @param item - предмет в ячейке (или null, если ячейка пуста)
- * @param containerType - тип контейнера (сундук, инвентарь, ячейка экипировки)
+ * @param id уникальный идентификатор ячейки (индекс в массиве)
+ * @param item предмет в ячейке (или null, если ячейка пуста)
+ * @param containerType тип контейнера (сундук, инвентарь, ячейка экипировки)
  */
 function ItemCell({ id, item, containerType } : ItemCellProps) {
     // Ref для DOM-элемента ячейки, необходим для работы Drag and Drop

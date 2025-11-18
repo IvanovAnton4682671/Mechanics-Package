@@ -88,9 +88,8 @@ export const useInventoryStore = create<IInventoryState>((set, get) => ({
     equipment: EQUIPMENT_TEST_ITEMS,
 
     moveItem: (fromContainer, toContainer, fromIndex, toIndex) => {
-        // Получаем текущее состояния
+        // Получаем текущее состояния и проверяем, связано ли перемещение с экипировкой
         const state = get();
-        // Проверяем, связано ли перемещение с экипировкой
         const isFromEquipment = fromContainer in state.equipment;
         const isToEquipment = toContainer in state.equipment;
 
@@ -122,26 +121,34 @@ export const useInventoryStore = create<IInventoryState>((set, get) => ({
     },
 
     moveInsideContainer: (targetContainer, fromIndex, toIndex) => {
+        // Получаем текущее состояние и массив предметов текущего контейнера
         const state = get();
         const currentArray = getContainerItems(state, targetContainer);
 
+        // Если получили некорректный контейнер - пропускаем
         if (!currentArray) {
             console.error(`Получен некорректный контейнер: ${targetContainer}`);
             return;
         } else {
+            // Получаем предмет, который нужно переместить и целевую ячейку, куда перемещаем предмет
             const itemToMove = currentArray[fromIndex];
             const targetCell = currentArray[toIndex];
 
+            // Если целевая ячейка пустая
             if (!targetCell) {
+                // Если получили корректный предмет и его можно переместить в целевую ячейку
                 if (itemToMove && canMoveItem(itemToMove, targetContainer)) {
+                    // Создаём копию массива и перемещаем предмет
                     const copyCurrentArray = [...currentArray];
                     copyCurrentArray[toIndex] = itemToMove;
                     copyCurrentArray[fromIndex] = null;
 
+                    // Обновляем состояние
                     set({
                         [`${targetContainer}Items`]: copyCurrentArray
                     });
                 }
+            // Иначе - вызываем свап внутри контейнера
             } else {
                 get().swapContainer(targetContainer, fromIndex, toIndex);
             }
@@ -149,29 +156,37 @@ export const useInventoryStore = create<IInventoryState>((set, get) => ({
     },
 
     moveBetweenContainers: (fromContainer, toContainer, fromIndex, toIndex) => {
+        // Получаем текущее состояние и массивы предметов контейнеров
         const state = get();
         const fromArray = getContainerItems(state, fromContainer);
         const toArray = getContainerItems(state, toContainer);
 
+        // Если получили некорректный(ые) контейнер(ы) - пропускаем
         if (!fromArray || !toArray) {
             console.error(`Один или оба контейнера некорректны: ${fromContainer}, ${toContainer}`);
             return;
         } else {
+            // Получаем предмет, который нужно переместить, и целевую ячейку
             const itemToMove = fromArray[fromIndex];
             const targetCell = toArray[toIndex];
 
+            // Если ячейка пустая
             if (!targetCell) {
+                // Если получили корректный предмет и его можно переместить в целевую ячейку
                 if (itemToMove && canMoveItem(itemToMove, toContainer)) {
+                    // Получаем копии массивов и перемещаем предмет
                     const copyFromArray = [...fromArray];
                     const copyToArray = [...toArray];
                     copyToArray[toIndex] = itemToMove;
                     copyFromArray[fromIndex] = null;
 
+                    // Обновляем состояние
                     set({
                         [`${fromContainer}Items`]: copyFromArray,
                         [`${toContainer}Items`]: copyToArray
                     });
                 }
+            // Иначе - вызываем свап между контейнерами
             } else {
                 get().swapContainers(fromContainer, toContainer, fromIndex, toIndex);
             }
@@ -179,25 +194,36 @@ export const useInventoryStore = create<IInventoryState>((set, get) => ({
     },
 
     moveContainerSlot: (fromContainer, fromIndex, toSlot) => {
+        // Получаем текущее состояние, массив предметов контейнера и экипировку персонажа
         const state = get();
         const fromArray = getContainerItems(state, fromContainer);
         const currentEquipment = get().equipment;
 
+        // Если получили некорректный контейнер - пропускаем
         if (!fromArray) {
             console.error(`Получен некорректный контейнер: ${fromContainer}`);
             return;
         } else {
+            // Получаем предмет, который нужно переместить, и целевой слот
             const itemToMove = fromArray[fromIndex];
             const targetSlot = currentEquipment[toSlot];
 
+            // Если слот пуст
             if (!targetSlot) {
+                // Если получили корректный предмет и его можно переместить в целевой слот
                 if (itemToMove && canMoveItem(itemToMove, toSlot)) {
+                    // Отдельные проверки для слотов рук:
+                    // если предмет двуручный и левая рука свободна
+                    // или если предмет одноручный и левая рука пуста или содержит корректный предмет
+                    // или если предмет одноручный/специальный и правая рука пуста или содержит корректный предмет
                     if ((itemToMove.type === "twoHandWeapon" && checkLeftHandForTwoHandedWeapon(itemToMove, toSlot, currentEquipment)) ||
                         (itemToMove.type === "oneHandWeapon" && checkLeftHandForOneHandedWeapon(itemToMove, toSlot, currentEquipment)) ||
                         (((itemToMove.type === "oneHandWeapon" || itemToMove.type === "offHand") && checkRightHandForOneOffHanded(itemToMove, toSlot, currentEquipment)))) {
+                        // Получаем копию массива и очищаем ячейку массива
                         const copyFromArray = [...fromArray];
                         copyFromArray[fromIndex] = null;
 
+                        // Обновляем состояние и перемещаем предмет в слот
                         set({
                             [`${fromContainer}Items`]: copyFromArray,
                             equipment: {
@@ -207,10 +233,13 @@ export const useInventoryStore = create<IInventoryState>((set, get) => ({
                         });
 
                         return;
+                    // Иначе если предмет не является двуручным/одноручным/специальным
                     } else if (itemToMove.type !== "twoHandWeapon" && itemToMove.type !== "oneHandWeapon" && itemToMove.type !== "offHand") {
+                        // Получаем копию массива и очищаем ячейку массива
                         const copyFromArray = [...fromArray];
                         copyFromArray[fromIndex] = null;
 
+                        // Обновляем состояние и перемещаем предмет в слот
                         set({
                             [`${fromContainer}Items`]: copyFromArray,
                             equipment: {
@@ -220,6 +249,7 @@ export const useInventoryStore = create<IInventoryState>((set, get) => ({
                         });
                     }
                 }
+            // Иначе - вызываем свап между контейнером и слотом
             } else {
                 get().swapContainerSlot(fromContainer, fromIndex, toSlot);
             }
@@ -227,22 +257,29 @@ export const useInventoryStore = create<IInventoryState>((set, get) => ({
     },
 
     moveSlotContainer: (fromSlot, toContainer, toIndex) => {
+        // Получаем состояние, массив предметов контейнера и экипировку персонажа
         const state = get();
         const toArray = getContainerItems(state, toContainer);
         const currentEquipment = get().equipment;
 
+        // Если получили некорректный контейнер - пропускаем
         if (!toArray) {
             console.error(`Получен некорректный контейнер: ${toContainer}`);
             return;
         } else {
+            // Получаем предмет, который нужно переместить, и целевой слот
             const itemToMove = currentEquipment[fromSlot];
             const targetCell = toArray[toIndex];
 
+            // Если слот пуст
             if (!targetCell) {
+                // Если получили корректный предмет и его можно переместить в целевой слот
                 if (itemToMove && canMoveItem(itemToMove, toContainer)) {
+                    // Получаем копию массива и перемещаем предмет
                     const copyToArray = [...toArray];
                     copyToArray[toIndex] = itemToMove;
 
+                    // Обновляем состояние и очищаем слот экипировки
                     set({
                         [`${toContainer}Items`]: copyToArray,
                         equipment: {
@@ -251,6 +288,7 @@ export const useInventoryStore = create<IInventoryState>((set, get) => ({
                         }
                     });
                 }
+            // Иначе - вызываем свап между слотом и контейнером
             } else {
                 get().swapSlotContainer(fromSlot, toContainer, toIndex);
             }
@@ -258,14 +296,19 @@ export const useInventoryStore = create<IInventoryState>((set, get) => ({
     },
 
     moveSlotSlot: (fromSlot, toSlot) => {
+        // Получаем состояние, экипировку персонажа, предмет, который нужно переместить, и целевой слот
         const state = get();
         const currentEquipment = get().equipment;
         const itemToMove = currentEquipment[fromSlot];
         const targetSlot = currentEquipment[toSlot];
 
+        // Если слот пуст
         if (!targetSlot) {
+            // Если получили корректный предмет и его можно переместить в целевой слот
             if (itemToMove && canMoveItem(itemToMove, toSlot)) {
+                // Из слота в слот можно перемещать только одноручные предмет, так что отдельная проверка
                 if (itemToMove.type === "oneHandWeapon") {
+                    // Обновляем состояние, в котором перемещаем предмет
                     set({
                         equipment: {
                             ...state.equipment,
@@ -275,27 +318,34 @@ export const useInventoryStore = create<IInventoryState>((set, get) => ({
                     });
                 }
             }
+        // Иначе - вызываем свап между слотами
         } else {
             get().swapSlots(fromSlot, toSlot);
         }
     },
 
     swapContainer: (targetContainer, fromIndex, toIndex) => {
+        // Получаем состояние и массив предметов контейнера
         const state = get();
         const currentArray = getContainerItems(state, targetContainer);
 
+        // Если получили некорректный контейнер - пропускаем
         if (!currentArray) {
             console.error(`Получен некорректный контейнер: ${targetContainer}`);
             return;
         } else {
+            // Получаем предметы которые нужно свапнуть
             const itemToMove = currentArray[fromIndex];
             const itemToRemove = currentArray[toIndex];
 
+            // Если получили корректные предметы и их можно переместить в целевые контейнеры
             if (itemToMove && itemToRemove && canMoveItem(itemToMove, targetContainer) && canMoveItem(itemToRemove, targetContainer)) {
+                // Получаем копию массива и свапаем предметы
                 const copyCurrentArray = [...currentArray];
                 copyCurrentArray[toIndex] = itemToMove;
                 copyCurrentArray[fromIndex] = itemToRemove;
 
+                // Обновляем состояние
                 set({
                     [`${targetContainer}Items`]: copyCurrentArray
                 });
@@ -304,23 +354,29 @@ export const useInventoryStore = create<IInventoryState>((set, get) => ({
     },
 
     swapContainers: (fromContainer, toContainer, fromIndex, toIndex) => {
+        // Получаем состояние и массивы предметов контейнеров
         const state = get();
         const fromArray = getContainerItems(state, fromContainer);
         const toArray = getContainerItems(state, toContainer);
 
+        // Если получили некорректный(ые) контейнер(ы) - пропускаем
         if (!fromArray || !toArray) {
             console.error(`Один или оба контейнера некорректны: ${fromContainer}, ${toContainer}`);
             return;
         } else {
+            // Получаем предметы, которые нужно свапнуть
             const itemToMove = fromArray[fromIndex];
             const itemToRemove = toArray[toIndex];
 
+            // Если получили корректные предметы и их можно переместить в целевые контейнеры
             if (itemToMove && itemToRemove && canMoveItem(itemToMove, toContainer) && canMoveItem(itemToRemove, fromContainer)) {
+                // Получаем копии массивов и свапаем предметы
                 const copyFromArray = [...fromArray]
                 const copyToArray = [...toArray];
                 copyFromArray[fromIndex] = itemToRemove;
                 copyToArray[toIndex] = itemToMove;
 
+                // Обновляем состояние
                 set({
                     [`${fromContainer}Items`]: copyFromArray,
                     [`${toContainer}Items`]: copyToArray
@@ -330,24 +386,34 @@ export const useInventoryStore = create<IInventoryState>((set, get) => ({
     },
 
     swapContainerSlot: (fromContainer, fromIndex, toSlot) => {
+        // Получаем состояние, массив предметов контейнера и экипировку персонажа
         const state = get();
         const currentArray = getContainerItems(state, fromContainer);
         const currentEquipment = get().equipment;
 
+        // Если получили некорректный контейнер - пропускаем
         if (!currentArray) {
             console.error(`Получен некорректный контейнер: ${fromContainer}`);
             return;
         } else {
+            // Получаем предметы, которые нужно свапнуть
             const itemToMove = currentArray[fromIndex];
             const itemToRemove = currentEquipment[toSlot];
 
+            // Если получили корректные предметы и их можно переместить в целевые контейнер/слот
             if (itemToMove && itemToRemove && canMoveItem(itemToMove, toSlot) && canMoveItem(itemToRemove, fromContainer)) {
+                // Отдельные проверки для слотов рук:
+                // если предмет двуручный и левая рука свободна
+                // или если предмет одноручный и левая рука пуста или содержит корректный предмет
+                // или если предмет одноручный/специальный и правая рука пуста или содержит корректный предмет
                 if ((itemToMove.type === "twoHandWeapon" && checkLeftHandForTwoHandedWeapon(itemToMove, toSlot, currentEquipment)) ||
                     (itemToMove.type === "oneHandWeapon" && checkLeftHandForOneHandedWeapon(itemToMove, toSlot, currentEquipment)) ||
                     ((itemToMove.type === "oneHandWeapon" || itemToMove.type === "offHand") && checkRightHandForOneOffHanded(itemToMove, toSlot, currentEquipment))) {
+                    // Получаем копию массива и выполняем половину свапа
                     const copyCurrentArray = [...currentArray];
                     copyCurrentArray[fromIndex] = itemToRemove;
 
+                    // Обновляем состояние и доделываем свап
                     set({
                         [`${fromContainer}Items`]: copyCurrentArray,
                         equipment: {
@@ -355,10 +421,13 @@ export const useInventoryStore = create<IInventoryState>((set, get) => ({
                             [toSlot]: itemToMove
                         }
                     });
+                // Иначе если предмет не является двуручным/одноручным/специальным
                 } else if (itemToMove.type !== "twoHandWeapon" && itemToMove.type !== "oneHandWeapon" && itemToMove.type !== "offHand") {
+                    // Получаем копию массива и выполняем половину свапа
                     const copyCurrentArray = [...currentArray];
                     copyCurrentArray[fromIndex] = itemToRemove;
 
+                    // Обновляем состояние и доделываем свап
                     set({
                         [`${fromContainer}Items`]: copyCurrentArray,
                         equipment: {
@@ -372,24 +441,34 @@ export const useInventoryStore = create<IInventoryState>((set, get) => ({
     },
 
     swapSlotContainer: (fromSlot, toContainer, toIndex) => {
+        // Получаем состояние, массив предметов контейнера и экипировку персонажа
         const state = get();
         const currentArray = getContainerItems(state, toContainer);
         const currentEquipment = get().equipment;
 
+        // Если получили некорректный контейнер - пропускаем
         if (!currentArray) {
             console.error(`Получен некорректный контейнер: ${toContainer}`);
             return;
         } else {
+            // Получаем предметы, которые нужно свапнуть
             const itemToMove = currentEquipment[fromSlot];
             const itemToRemove = currentArray[toIndex];
 
+            // Если получили корректные предметы и их можно переместить в целевые контейнер/слот
             if (itemToMove && itemToRemove && canMoveItem(itemToMove, toContainer) && canMoveItem(itemToRemove, fromSlot)) {
+                // Отдельные проверки для слотов рук:
+                // если предмет двуручный и левая рука свободна
+                // или если предмет одноручный и левая рука пуста или содержит корректный предмет
+                // или если предмет одноручный/специальный и правая рука пуста или содержит корректный предмет
                 if ((itemToRemove.type === "twoHandWeapon" && checkLeftHandForTwoHandedWeapon(itemToRemove, fromSlot, currentEquipment)) ||
                     (itemToRemove.type === "oneHandWeapon" && checkLeftHandForOneHandedWeapon(itemToRemove, fromSlot, currentEquipment)) ||
                     ((itemToRemove.type === "oneHandWeapon" || itemToRemove.type === "offHand") && checkRightHandForOneOffHanded(itemToRemove, fromSlot, currentEquipment))) {
+                        // Получаем копию массива и выполняем половину свапа
                     const copyCurrentArray = [...currentArray];
                     copyCurrentArray[toIndex] = itemToMove;
 
+                    // Обновляем состояние и доделываем свап
                     set({
                         [`${toContainer}Items`]: copyCurrentArray,
                         equipment: {
@@ -397,10 +476,13 @@ export const useInventoryStore = create<IInventoryState>((set, get) => ({
                             [fromSlot]: itemToRemove
                         }
                     });
+                // Иначе если предмет не является двуручным/одноручным/специальным
                 } else if (itemToRemove.type !== "twoHandWeapon" && itemToRemove.type !== "oneHandWeapon" && itemToRemove.type !== "offHand") {
+                    // Получаем копию массива и выполняем половину свапа
                     const copyCurrentArray = [...currentArray];
                     copyCurrentArray[toIndex] = itemToMove;
 
+                    // Обновляем состояние и доделываем свап
                     set({
                         [`${toContainer}Items`]: copyCurrentArray,
                         equipment: {
@@ -414,13 +496,17 @@ export const useInventoryStore = create<IInventoryState>((set, get) => ({
     },
 
     swapSlots: (fromSlot, toSlot) => {
+        // Получаем состояние, экипировку персонажа и предметы, которые нужно свапнуть
         const state = get();
         const currentEquipment = get().equipment;
         const itemToMove = currentEquipment[fromSlot];
         const itemToRemove = currentEquipment[toSlot];
 
+        // Если получили корректные предметы и их можно переместить в целевые слоты
         if (itemToMove && itemToRemove && canMoveItem(itemToMove, toSlot) && canMoveItem(itemToRemove, fromSlot)) {
+            // Свапать между слотами можно только одноручные предметы, так что проверка
             if (itemToMove.type === "oneHandWeapon" && itemToRemove.type === "oneHandWeapon") {
+                // Обновляем состояние и выполняем свап
                 set({
                     equipment: {
                         ...state.equipment,

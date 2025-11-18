@@ -5,7 +5,7 @@ import type { myItem } from "../items/types";
  * Тип контейнеров, между которыми можно перемещать предметы.
  * Это позволяет системе различать, откуда и куда перемещается предмет
  */
-export type myContainer = "chest" | myEquipmentContainer | "inventory";
+export type myContainer = "chest" | "inventory" | myEquipmentContainer;
 
 /**
  * Тип массива, который содержит предметы.

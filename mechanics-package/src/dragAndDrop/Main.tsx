@@ -9,9 +9,7 @@ function Main() {
             <Flex width="100%" height="100%" direction="row" justify="center" align="center" gap="5">
                 <Dialog.Root>
                     <Dialog.Trigger>
-                        <Button variant="surface">
-                            Сундук, экипировка и инвентарь
-                        </Button>
+                        <Button variant="surface">Сундук, экипировка и инвентарь</Button>
                     </Dialog.Trigger>
                     <Dialog.Content maxWidth="100%">
                         <Dialog.Title/>

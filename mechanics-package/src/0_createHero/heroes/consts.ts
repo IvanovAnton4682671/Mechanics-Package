@@ -3,6 +3,9 @@ import knightImage from "./images/knight_no_background.png";
 import thiefImage from "./images/thief_no_background.png";
 import wizardImage from "./images/wizard_no_background.png";
 
+/**
+ * Список всех героев
+ */
 export const HEROES: Array<myHero> = [
     {
         id: 1,

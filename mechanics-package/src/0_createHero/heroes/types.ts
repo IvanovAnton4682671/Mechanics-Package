@@ -4,14 +4,27 @@
 type myHeroType = "knight" | "thief" | "wizard";
 
 /**
- * Тип для характеристик героя
+ * Тип для названия характеристики героя
  */
-type myHeroStat = "health" | "mana" | "strength" | "agility" | "intelligence";
+export type myHeroStatEn = "health" | "mana" | "strength" | "agility" | "intelligence";
 
 /**
- * Тип, описывающий все статы персонажа
+ * Тип для русского названия характеристики героя
  */
-type myHeroStats = Record<myHeroStat, number>;
+type myHeroStatRu = "Здоровье" | "Мана" | "Сила" | "Ловкость" | "Интеллект";
+
+/**
+ * Тип для лучшей иформативности характеристики героя
+ */
+export type myHeroStat = {
+    statRu: myHeroStatRu;
+    statValue: number;
+};
+
+/**
+ * Тип, описывающий все характеристики персонажа
+ */
+type myHeroStats = Record<myHeroStatEn, myHeroStat>;
 
 /**
  * Тип героя

@@ -11,7 +11,7 @@ function Main() {
                     <Dialog.Trigger>
                         <Button variant="surface">Сундук, экипировка и инвентарь</Button>
                     </Dialog.Trigger>
-                    <Dialog.Content maxWidth="100%">
+                    <Dialog.Content maxWidth="100%" maxHeight="100%" style={{ width: "90vw", height: "90vh", overflow: "hidden" }}>
                         <Dialog.Title/>
                         <Dialog.Description/>
                         <SharedInventory/>

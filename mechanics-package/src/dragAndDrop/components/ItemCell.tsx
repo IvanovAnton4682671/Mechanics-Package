@@ -3,7 +3,7 @@ import React from "react";
 import { useInventoryStore } from "../stores/inventoryStore";
 import { useDrag, useDrop } from "react-dnd";
 import { ITEM_TYPES } from "../types/consts";
-import { Flex, Text } from "@radix-ui/themes";
+import { Flex } from "@radix-ui/themes";
 
 /**
  * Компонент ячейки предмета, который может быть перетаскиваемым (draggable)
@@ -117,12 +117,12 @@ function ItemCell({ id, item, containerType } : ItemCellProps) {
                 borderColor: isOver ? "var(--accent-10)" : "var(--gray-a6)",
                 borderRadius: "var(--radius-5)",
                 opacity: isDragging ? 0.5 : 1,
-                backgroundColor: item ? "var(--gray-a3)" : "var(--gray-a1)",
+                backgroundColor: item ? item.backgroundColor : "var(--gray-a1)",
                 cursor: item ? 'grab' : 'default'
             }}
         >
-            {/* Отображаем название предмета или пустоту, если ячейка пуста */}
-            <Text size="1">{ item === null ? "" : item.name }</Text>
+            {/* Отображаем картинку предмета или пустоту, если ячейка пуста */}
+            { item === null ? null : <img src={ item.image } alt="image" style={{ width: "100%", height: "100%" }}/> }
         </Flex>
     )
 }

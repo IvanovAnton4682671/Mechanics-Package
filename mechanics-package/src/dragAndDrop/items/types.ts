@@ -7,6 +7,8 @@ import type { myAllowedContainers } from "../types/types";
 export type myItem = {
     id: number;
     name: string;
+    image: string;
+    backgroundColor: string;
     type: myEquipmentType;
     allowedContainers: myAllowedContainers;
 };

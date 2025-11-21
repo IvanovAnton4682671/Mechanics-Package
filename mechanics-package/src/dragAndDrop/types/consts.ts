@@ -1,5 +1,6 @@
 import type { myItemArray, myItemCell } from "./types";
 import { EQUIPMENT_ITEMS, EQUIPMENT_RULES } from "../items/equipment/consts";
+import { EQUIPMENT_IMAGES } from "../items/equipment/consts";
 import type { myEquipmentContainer } from "../items/equipment/types";
 
 /**
@@ -41,10 +42,10 @@ export const INVENTORY_TEST_ITEMS: myItemArray = [
     EQUIPMENT_ITEMS[8],
     EQUIPMENT_ITEMS[9],
     EQUIPMENT_ITEMS[10],
-    { id: 18, name: "Сапоги1", type: "boots", allowedContainers: EQUIPMENT_RULES.boots },
-    { id: 19, name: "Одноручный меч1", type: "oneHandWeapon", allowedContainers: EQUIPMENT_RULES.oneHandWeapon },
-    { id: 20, name: "Двуручный меч1", type: "twoHandWeapon", allowedContainers: EQUIPMENT_RULES.twoHandWeapon },
-    { id: 21, name: "Щит1", type: "offHand", allowedContainers: EQUIPMENT_RULES.offHand },
+    { id: 18, name: "Сапоги1", image: EQUIPMENT_IMAGES.boots, backgroundColor: "var(--gray-a3)", type: "boots", allowedContainers: EQUIPMENT_RULES.boots },
+    { id: 19, name: "Одноручный меч1", image: EQUIPMENT_IMAGES.sword, backgroundColor: "var(--gray-a3)", type: "oneHandWeapon", allowedContainers: EQUIPMENT_RULES.oneHandWeapon },
+    { id: 20, name: "Двуручный меч1", image: EQUIPMENT_IMAGES.longSword, backgroundColor: "var(--gray-a3)", type: "twoHandWeapon", allowedContainers: EQUIPMENT_RULES.twoHandWeapon },
+    { id: 21, name: "Щит1", image: EQUIPMENT_IMAGES.shield, backgroundColor: "var(--gray-a3)", type: "offHand", allowedContainers: EQUIPMENT_RULES.offHand },
     null, null, null, null, null, null, null,
     null, null, null, null, null, null, null, null, null, null,
 ];

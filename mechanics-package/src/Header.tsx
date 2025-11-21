@@ -19,6 +19,7 @@ function Header({ changeTheme, changePage } : HeaderProps) {
                     </DropdownMenu.Trigger>
                     <DropdownMenu.Content>
                         <DropdownMenu.Item onSelect={ () => changePage("createHero") }>Создание героя</DropdownMenu.Item>
+                        <DropdownMenu.Item onSelect={ () => changePage("itemCard") }>Карточка предмета</DropdownMenu.Item>
                         <DropdownMenu.Item onSelect={ () => changePage("dragAndDrop") }>Drag and Drop</DropdownMenu.Item>
                     </DropdownMenu.Content>
                 </DropdownMenu.Root>
@@ -26,6 +27,6 @@ function Header({ changeTheme, changePage } : HeaderProps) {
             <Separator orientation="horizontal" size="4"/>
         </Flex>
     )
-}
+};
 
 export default Header;

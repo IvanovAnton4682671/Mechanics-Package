@@ -4,6 +4,7 @@ import type { myTheme, myPage } from "./types";
 import { Theme, Flex } from "@radix-ui/themes";
 import Header from "./Header";
 import CreateHero from "./0_createHero/Main";
+import ItemCard from "./1_itemCard/Main";
 import DragAndDrop from "./dragAndDrop/Main";
 
 function App() {
@@ -38,11 +39,12 @@ function App() {
                 </Flex>
                 <Flex width="100%" height="90%">
                     { currentPage === "createHero" && <CreateHero/> }
+                    { currentPage === "itemCard" && <ItemCard/> }
                     { currentPage === "dragAndDrop" && <DragAndDrop/> }
                 </Flex>
             </Flex>
         </Theme>
     );
-}
+};
 
 export default App;

@@ -1,5 +1,6 @@
-import type { myItemCell, myContainer } from "./types";
-import type { myItem } from "../items/types";
+import type { myItemCell } from "./types";
+import type { myContainer } from "../../entities/containersForItems/types";
+import type { myItem } from "../../entities/items/types";
 
 /**
  * Интерфейс пропсов (свойств) компонента ItemCell.

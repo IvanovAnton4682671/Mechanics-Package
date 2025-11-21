@@ -1,6 +1,6 @@
 import React from "react";
 import type { HeroContainerProps } from "../types/interfaces";
-import type { myHeroStat, myHeroStatEn } from "../heroes/types";
+import type { myHeroStatEn, myHeroStat } from "../../entities/heroes/types";
 import { Flex, TextField, DataList, Text, Dialog, Button } from "@radix-ui/themes";
 import Message from "./Message";
 

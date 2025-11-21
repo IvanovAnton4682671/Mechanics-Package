@@ -16,6 +16,6 @@ function Main() {
             </Dialog.Root>
         </Flex>
     )
-}
+};
 
 export default Main;

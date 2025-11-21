@@ -1,8 +1,9 @@
 import { create } from "zustand";
 import type { IInventoryState } from "./interfaces";
 import { CHEST_TEST_ITEMS, INVENTORY_TEST_ITEMS, EQUIPMENT_TEST_ITEMS } from "../types/consts";
-import type { myContainer, myItemArray } from "../types/types";
-import type { myItem } from "../items/types";
+import type { myItemArray } from "../types/types";
+import type { myContainer } from "../../entities/containersForItems/types";
+import type { myItem } from "../../entities/items/types";
 
 /**
  * Вспомогательный метод для безопасного получения массива предметов контейнера

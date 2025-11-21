@@ -1,4 +1,4 @@
-import type { myHero } from "../heroes/types";
+import type { myHero } from "../../entities/heroes/types";
 
 /**
  * Интерфейс пропсов компонента HeroContainer

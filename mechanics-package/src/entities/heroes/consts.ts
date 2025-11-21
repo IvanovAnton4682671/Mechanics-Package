@@ -1,7 +1,5 @@
 import type { myHero } from "./types";
-import knightImage from "./images/knight_no_background.png";
-import thiefImage from "./images/thief_no_background.png";
-import wizardImage from "./images/wizard_no_background.png";
+import { HEROES_IMAGES } from "./images/consts";
 
 /**
  * Список всех героев
@@ -10,7 +8,7 @@ export const HEROES: Array<myHero> = [
     {
         id: 1,
         type: "knight",
-        image: knightImage,
+        image: HEROES_IMAGES.knightImage,
         name: null,
         stats: {
             health: { statRu: "Здоровье", statValue: 100 },
@@ -24,7 +22,7 @@ export const HEROES: Array<myHero> = [
     {
         id: 2,
         type: "thief",
-        image: thiefImage,
+        image: HEROES_IMAGES.thiefImage,
         name: null,
         stats: {
             health: { statRu: "Здоровье", statValue: 100 },
@@ -38,7 +36,7 @@ export const HEROES: Array<myHero> = [
     {
         id: 3,
         type: "wizard",
-        image: wizardImage,
+        image: HEROES_IMAGES.wizardImage,
         name: null,
         stats: {
             health: { statRu: "Здоровье", statValue: 70 },

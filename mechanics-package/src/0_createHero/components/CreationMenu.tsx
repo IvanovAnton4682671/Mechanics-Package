@@ -1,6 +1,6 @@
 import React from "react";
-import type { myHero } from "../heroes/types";
-import { HEROES } from "../heroes/consts";
+import type { myHero } from "../../entities/heroes/types";
+import { HEROES } from "../../entities/heroes/consts";
 import { Flex, Text, Button } from "@radix-ui/themes";
 import HeroContainer from "./HeroContainer";
 
@@ -24,6 +24,6 @@ function CreationMenu() {
             </Flex>
         </Flex>
     )
-}
+};
 
 export default CreationMenu;

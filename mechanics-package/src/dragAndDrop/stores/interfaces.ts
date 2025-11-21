@@ -1,4 +1,5 @@
-import type { myItemArray, myItemCell, myContainer } from "../types/types";
+import type { myItemArray, myItemCell } from "../types/types";
+import type { myContainer } from "../../entities/containersForItems/types";
 
 /**
  * Интерфейс состояния общего инвентаря, который управляет перемещениями всех предметов

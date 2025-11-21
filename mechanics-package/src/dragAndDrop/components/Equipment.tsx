@@ -47,7 +47,7 @@ function Equipment() {
                         <ItemCell id={ 8 } item={ equipment.leftHand } containerType="leftHand"/>
                     </Flex>
                     <Flex direction="column" justify="center" align="center" gap="2">
-                        <Text size="1">Доспехи</Text>
+                        <Text size="1">Доспех</Text>
                         <ItemCell id={ 9 } item={ equipment.chestArmor } containerType="chestArmor"/>
                     </Flex>
                     <Flex direction="column" justify="center" align="center" gap="2">

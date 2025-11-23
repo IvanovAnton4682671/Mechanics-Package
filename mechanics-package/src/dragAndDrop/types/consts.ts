@@ -1,5 +1,5 @@
 import type { myItemArray, myItemCell } from "./types";
-import { EQUIPMENT_ITEMS } from "../../entities/items/equipment/consts";
+import { KNIGHT_EQUIPMENT_ITEMS } from "../../entities/items/equipment/knightEquipment/consts";
 import type { myEquipmentSlot } from "../../entities/containersForItems/types";
 
 /**
@@ -20,14 +20,14 @@ export const ITEM_TYPES = {
  * Тестовый массив сундука, в котором есть несколько предметов, а остальные ячейки пустые (null)
  */
 export const CHEST_TEST_ITEMS: myItemArray = [
-    EQUIPMENT_ITEMS[0],
-    EQUIPMENT_ITEMS[1],
-    EQUIPMENT_ITEMS[2],
-    EQUIPMENT_ITEMS[3],
-    EQUIPMENT_ITEMS[4],
-    EQUIPMENT_ITEMS[5],
-    EQUIPMENT_ITEMS[6],
-    EQUIPMENT_ITEMS[7],
+    KNIGHT_EQUIPMENT_ITEMS.knightBoots,
+    KNIGHT_EQUIPMENT_ITEMS.knightFootArmor,
+    KNIGHT_EQUIPMENT_ITEMS.knightBelt,
+    KNIGHT_EQUIPMENT_ITEMS.knightChestArmor,
+    KNIGHT_EQUIPMENT_ITEMS.knightShoulderPads,
+    KNIGHT_EQUIPMENT_ITEMS.knightBracers,
+    KNIGHT_EQUIPMENT_ITEMS.knightGloves,
+    KNIGHT_EQUIPMENT_ITEMS.knightHelmet,
     null, null,
     null, null, null, null, null, null, null, null, null, null,
     null, null, null, null, null, null, null, null, null, null,
@@ -38,10 +38,10 @@ export const CHEST_TEST_ITEMS: myItemArray = [
  * Аналогичный тестовый массив инвентаря персонажа
  */
 export const INVENTORY_TEST_ITEMS: myItemArray = [
-    EQUIPMENT_ITEMS[8],
-    EQUIPMENT_ITEMS[9],
-    EQUIPMENT_ITEMS[10],
-    EQUIPMENT_ITEMS[11],
+    KNIGHT_EQUIPMENT_ITEMS.knightSword,
+    KNIGHT_EQUIPMENT_ITEMS.knightMace,
+    KNIGHT_EQUIPMENT_ITEMS.knightLongSword,
+    KNIGHT_EQUIPMENT_ITEMS.knightShield,
     null, null, null, null, null, null, null, null, null, null,
     null, null, null, null, null, null, null, null, null, null
 ];

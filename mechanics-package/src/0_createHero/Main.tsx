@@ -8,7 +8,7 @@ function Main() {
                 <Dialog.Trigger>
                     <Button variant="surface">Меню создания героя</Button>
                 </Dialog.Trigger>
-                <Dialog.Content maxWidth="100%" maxHeight="100%" style={{ width: "70vw", height: "70vh", overflow: "hidden" }}>
+                <Dialog.Content maxWidth="100%" maxHeight="100%" style={{ width: "85vw", height: "85vh", overflow: "hidden" }}>
                     <Dialog.Title/>
                     <Dialog.Description/>
                     <CreationMenu/>

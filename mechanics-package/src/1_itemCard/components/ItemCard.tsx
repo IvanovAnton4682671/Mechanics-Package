@@ -21,7 +21,8 @@ function ItemCard({ item }: ItemCardProps) {
                     </Flex>
                     <Flex width="100%" height="50%" direction="column" justify="center" align="center">
                         <Text size="2">{ item.name }</Text>
-                        <Text size="2">Заглушка под описание и свойства предмета</Text>
+                        <Text size="2">Тип: { item.typeRu }</Text>
+                        <Text size="2">Редкость: { item.rarityRu }</Text>
                     </Flex>
                  </Flex>
             </HoverCard.Content>

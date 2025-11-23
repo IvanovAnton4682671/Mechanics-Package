@@ -14,7 +14,7 @@ export type myHeroStatEn = "health" | "mana" | "strength" | "agility" | "intelli
 export type myHeroStatRu = "Здоровье" | "Мана" | "Сила" | "Ловкость" | "Интеллект";
 
 /**
- * Тип для лучшей иформативности характеристики героя
+ * Тип для лучшей информативности характеристики героя
  */
 export type myHeroStat = {
     statRu: myHeroStatRu;

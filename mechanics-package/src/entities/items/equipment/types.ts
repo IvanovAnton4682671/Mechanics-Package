@@ -27,8 +27,3 @@ export type myEquipmentRarityRu = "Обычная" | "Необычная" | "Р�
  */
 export type myEquipmentRarityColor = "var(--gray-a5)" | "var(--jade-a5)" | "var(--yellow-a5)" | "var(--purple-a5)"
     | "var(--pink-a5)" | "var(--ruby-a5)" | "var(--tomato-a5)";
-
-/**
- * Тип для связи редкости и цвета предметов экипировки
- */
-export type myEquipmentRarityColorPair = Record<myEquipmentRarity, myEquipmentRarityColor>;

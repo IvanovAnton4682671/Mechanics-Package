@@ -1,4 +1,5 @@
 import type { myContainer } from "../containersForItems/types";
+import type { myHeroType } from "../heroes/types";
 import type {
     myEquipmentType,
     myEquipmentTypeRu,
@@ -17,6 +18,7 @@ export type myAllowedContainers = Array<myContainer>;
  */
 export type myItem = {
     id: number;
+    class: myHeroType;
     name: string;
     type: myEquipmentType;
     typeRu: myEquipmentTypeRu;

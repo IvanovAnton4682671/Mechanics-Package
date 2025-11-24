@@ -5,7 +5,7 @@ import { Flex, Text, Button } from "@radix-ui/themes";
 import HeroContainer from "./HeroContainer";
 
 function CreationMenu() {
-    const [currentHero, setCurrentHero] = React.useState<myHero>(HEROES[0]);
+    const [currentHero, setCurrentHero] = React.useState<myHero>(HEROES.knight);
 
     return(
         <Flex width="100%" height="100%" direction="row">
@@ -14,9 +14,9 @@ function CreationMenu() {
                     <Text size="8">Выбор героя</Text>
                 </Flex>
                 <Flex width="100%" height="90%" direction="column" justify="center" align="center" gap="3">
-                    <Button variant="soft" onClick={ () => setCurrentHero(HEROES[0]) }>Воин</Button>
-                    <Button variant="soft" onClick={ () => setCurrentHero(HEROES[1]) }>Разбойник</Button>
-                    <Button variant="soft" onClick={ () => setCurrentHero(HEROES[2]) }>Волшебник</Button>
+                    <Button variant="soft" onClick={ () => setCurrentHero(HEROES.knight) }>Воин</Button>
+                    <Button variant="soft" onClick={ () => setCurrentHero(HEROES.thief) }>Разбойник</Button>
+                    <Button variant="soft" onClick={ () => setCurrentHero(HEROES.wizard) }>Волшебник</Button>
                 </Flex>
             </Flex>
             <Flex width="80%" height="100%" justify="center" align="center">

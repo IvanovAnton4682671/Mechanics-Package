@@ -12,9 +12,16 @@ import knightLongSwordImage from "./knight_longSword_no_background.png";
 import knightShieldImage from "./knight_shield_no_background.png";
 
 /**
+ * Вспомогательный тип, облегчает доступ к картинкам
+ */
+type myKnightEquipmentImages = "knightBootsImage" | "knightFootArmorImage" | "knightBeltImage" | "knightChestArmorImage"
+    | "knightShoulderPadsImage" | "knightBracersImage" | "knightGlovesImage" | "knightHelmetImage"
+    | "knightSwordImage" | "knightMaceImage" | "knightLongSwordImage" | "knightShieldImage";
+
+/**
  * Все картинки предметов экипировки героя рыцаря
  */
-export const KNIGHT_EQUIPMENT_IMAGES: Record<string, string> = {
+export const KNIGHT_EQUIPMENT_IMAGES: Record<myKnightEquipmentImages, string> = {
     // Броня
     knightBootsImage: knightBootsImage,
     knightFootArmorImage: knightFootArmorImage,

@@ -1,6 +1,6 @@
 import type { myEquipmentType } from "./types";
 import type { myAllowedContainers } from "../types";
-import type { myEquipmentRarityColorPair } from "./types";
+import type { myEquipmentRarity, myEquipmentRarityColor } from "./types";
 
 /**
  * Общие правила экипировки, описывают какой предмет экипировки в какие ячейки можно поместить
@@ -24,7 +24,7 @@ export const EQUIPMENT_RULES: Record<myEquipmentType, myAllowedContainers> = {
 /**
  * Общие пары редкости-цвета для предметов экипировки
  */
-export const EQUIPMENT_RARITY_COLORS: myEquipmentRarityColorPair = {
+export const EQUIPMENT_RARITY_COLORS: Record<myEquipmentRarity, myEquipmentRarityColor> = {
     common: "var(--gray-a5)",
     uncommon: "var(--jade-a5)",
     rare: "var(--yellow-a5)",
@@ -32,4 +32,4 @@ export const EQUIPMENT_RARITY_COLORS: myEquipmentRarityColorPair = {
     epic: "var(--pink-a5)",
     legendary: "var(--ruby-a5)",
     divine: "var(--tomato-a5)"
-}
+};

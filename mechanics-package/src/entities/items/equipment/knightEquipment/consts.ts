@@ -10,6 +10,7 @@ export const KNIGHT_EQUIPMENT_ITEMS: Record<string, myItem> = {
     // Броня
     knightBoots: {
         id: 1,
+        class: "knight",
         name: "Сапоги рыцаря",
         type: "boots",
         typeRu: "Сапоги",
@@ -21,6 +22,7 @@ export const KNIGHT_EQUIPMENT_ITEMS: Record<string, myItem> = {
     },
     knightFootArmor: {
         id: 2,
+        class: "knight",
         name: "Поножи рыцаря",
         type: "footArmor",
         typeRu: "Поножи",
@@ -32,6 +34,7 @@ export const KNIGHT_EQUIPMENT_ITEMS: Record<string, myItem> = {
     },
     knightBelt: {
         id: 3,
+        class: "knight",
         name: "Пояс рыцаря",
         type: "belt",
         typeRu: "Пояс",
@@ -43,6 +46,7 @@ export const KNIGHT_EQUIPMENT_ITEMS: Record<string, myItem> = {
     },
     knightChestArmor: {
         id: 4,
+        class: "knight",
         name: "Доспех рыцаря",
         type: "chestArmor",
         typeRu: "Доспех",
@@ -54,6 +58,7 @@ export const KNIGHT_EQUIPMENT_ITEMS: Record<string, myItem> = {
     },
     knightShoulderPads: {
         id: 5,
+        class: "knight",
         name: "Наплечники рыцаря",
         type: "shoulderPads",
         typeRu: "Наплечники",
@@ -65,6 +70,7 @@ export const KNIGHT_EQUIPMENT_ITEMS: Record<string, myItem> = {
     },
     knightBracers: {
         id: 6,
+        class: "knight",
         name: "Наручи рыцаря",
         type: "bracers",
         typeRu: "Наручи",
@@ -76,6 +82,7 @@ export const KNIGHT_EQUIPMENT_ITEMS: Record<string, myItem> = {
     },
     knightGloves: {
         id: 7,
+        class: "knight",
         name: "Перчатки рыцаря",
         type: "gloves",
         typeRu: "Перчатки",
@@ -87,6 +94,7 @@ export const KNIGHT_EQUIPMENT_ITEMS: Record<string, myItem> = {
     },
     knightHelmet: {
         id: 8,
+        class: "knight",
         name: "Шлем рыцаря",
         type: "helmet",
         typeRu: "Шлем",
@@ -99,6 +107,7 @@ export const KNIGHT_EQUIPMENT_ITEMS: Record<string, myItem> = {
     // Оружие
     knightSword: {
         id: 9,
+        class: "knight",
         name: "Одноручный меч рыцаря",
         type: "oneHandWeapon",
         typeRu: "Одноручное оружие",
@@ -110,6 +119,7 @@ export const KNIGHT_EQUIPMENT_ITEMS: Record<string, myItem> = {
     },
     knightMace: {
         id: 10,
+        class: "knight",
         name: "Одноручная булава рыцаря",
         type: "oneHandWeapon",
         typeRu: "Одноручное оружие",
@@ -121,6 +131,7 @@ export const KNIGHT_EQUIPMENT_ITEMS: Record<string, myItem> = {
     },
     knightLongSword: {
         id: 11,
+        class: "knight",
         name: "Двуручный рыцаря",
         type: "twoHandWeapon",
         typeRu: "Двуручное оружие",
@@ -132,6 +143,7 @@ export const KNIGHT_EQUIPMENT_ITEMS: Record<string, myItem> = {
     },
     knightShield: {
         id: 11,
+        class: "knight",
         name: "Щит рыцаря",
         type: "offHand",
         typeRu: "Вспомогательное",
@@ -140,5 +152,5 @@ export const KNIGHT_EQUIPMENT_ITEMS: Record<string, myItem> = {
         backgroundColor: EQUIPMENT_RARITY_COLORS.epic,
         image: KNIGHT_EQUIPMENT_IMAGES.knightShieldImage,
         allowedContainers: EQUIPMENT_RULES.offHand
-    },
+    }
 };

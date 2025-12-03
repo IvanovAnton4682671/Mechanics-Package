@@ -1,8 +1,8 @@
 import type { myItem } from "../../entities/items/types";
 
 /**
- * Интерфейс пропсов компонента ItemCard
+ * Интерфейс пропсов компонента ItemCellCard
  */
-export interface ItemCardProps {
-    item: myItem;
-}
+export interface ItemCellCardProps {
+    item: myItem | null;
+};

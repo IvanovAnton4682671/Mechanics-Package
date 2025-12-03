@@ -1,6 +1,5 @@
-import type { myEquipmentType } from "./types";
+import type { myEquipmentType, myEquipmentTypeRu, myEquipmentRarity, myEquipmentRarityRu, myEquipmentRarityColor } from "./types";
 import type { myAllowedContainers } from "../types";
-import type { myEquipmentRarity, myEquipmentRarityColor } from "./types";
 
 /**
  * Общие правила экипировки, описывают какой предмет экипировки в какие ячейки можно поместить
@@ -19,6 +18,38 @@ export const EQUIPMENT_RULES: Record<myEquipmentType, myAllowedContainers> = {
     oneHandWeapon: ["chest", "inventory", "rightHand", "leftHand"],
     twoHandWeapon: ["chest", "inventory", "rightHand"],
     offHand: ["chest", "inventory", "leftHand"]
+};
+
+/**
+ * Общие пары типов для предметов экипировки
+ */
+export const EQUIPMENT_TYPES_RU: Record<myEquipmentType, myEquipmentTypeRu> = {
+    // Броня
+    boots: "Сапоги",
+    footArmor: "Поножи",
+    belt: "Пояс",
+    chestArmor: "Доспех",
+    shoulderPads: "Наплечники",
+    bracers: "Наручи",
+    gloves: "Перчатки",
+    helmet: "Шлем",
+    // Оружие
+    oneHandWeapon: "Одноручное оружие",
+    twoHandWeapon: "Двуручное оружие",
+    offHand: "Вспомогательное"
+};
+
+/**
+ * Общие пары названий редкостей для предметов экипировки
+ */
+export const EQUIPMENT_RARITY_RU: Record<myEquipmentRarity, myEquipmentRarityRu> = {
+    common: "Обычная",
+    uncommon: "Необычная",
+    rare: "Редкая",
+    unique: "Уникальная",
+    epic: "Эпическая",
+    legendary: "Легендарная",
+    divine: "Божественная"
 };
 
 /**

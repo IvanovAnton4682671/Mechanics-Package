@@ -1,15 +1,15 @@
-import knightBootsImage from "./knight_boots_no_background.png";
-import knightFootArmorImage from "./knight_footArmor_no_background.png";
-import knightBeltImage from "./knight_belt_no_background.png";
-import knightChestArmorImage from "./knight_chestArmor_no_background.png";
-import knightShoulderPadsImage from "./knight_shoulder_pads_no_background.png";
-import knightBracersImage from "./knight_bracers_no_background.png";
-import knightGlovesImage from "./knight_gloves_no_background.png";
-import knightHelmetImage from "./knight_helmet_no_background.png";
-import knightSwordImage from "./knight_sword_no_background.png";
-import knightMaceImage from "./knight_mace_no_background.png";
-import knightLongSwordImage from "./knight_longSword_no_background.png";
-import knightShieldImage from "./knight_shield_no_background.png";
+import knightBootsImage from "./knight_boots.png";
+import knightFootArmorImage from "./knight_footArmor.png";
+import knightBeltImage from "./knight_belt.png";
+import knightChestArmorImage from "./knight_chestArmor.png";
+import knightShoulderPadsImage from "./knight_shoulder_pads.png";
+import knightBracersImage from "./knight_bracers.png";
+import knightGlovesImage from "./knight_gloves.png";
+import knightHelmetImage from "./knight_helmet.png";
+import knightSwordImage from "./knight_sword.png";
+import knightMaceImage from "./knight_mace.png";
+import knightLongSwordImage from "./knight_longSword.png";
+import knightShieldImage from "./knight_shield.png";
 
 /**
  * Вспомогательный тип, облегчает доступ к картинкам

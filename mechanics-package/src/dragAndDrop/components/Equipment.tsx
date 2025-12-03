@@ -1,6 +1,6 @@
 import { useInventoryStore } from "../stores/inventoryStore";
 import { Flex, Text, Separator } from "@radix-ui/themes";
-import ItemCell from "./ItemCell";
+import ItemCellCard from "./ItemCellCard";
 
 function Equipment() {
     // Получаем всю экипировку из хранилища
@@ -14,45 +14,45 @@ function Equipment() {
                 <Flex width="50%" height="100%" direction="row" justify="center" align="center" gap="3">
                     <Flex direction="column" justify="center" align="center" gap="2">
                         <Text size="1">Перчатки</Text>
-                        <ItemCell id={ 1 } item={ equipment.gloves } containerType="gloves"/>
+                        <ItemCellCard id={ 1 } item={ equipment.gloves } containerType="gloves"/>
                     </Flex>
                     <Flex direction="column" justify="center" align="center" gap="2">
                         <Text size="1">Наплечники</Text>
-                        <ItemCell id={ 2 } item={ equipment.shoulderPads } containerType="shoulderPads"/>
+                        <ItemCellCard id={ 2 } item={ equipment.shoulderPads } containerType="shoulderPads"/>
                     </Flex>
                     <Flex direction="column" justify="center" align="center" gap="2">
                         <Text size="1">Правая рука</Text>
-                        <ItemCell id={ 3 } item={ equipment.rightHand } containerType="rightHand"/>
+                        <ItemCellCard id={ 3 } item={ equipment.rightHand } containerType="rightHand"/>
                     </Flex>
                     <Flex direction="column" justify="center" align="center" gap="2">
                         <Text size="1">Пояс</Text>
-                        <ItemCell id={ 4 } item={ equipment.belt } containerType="belt"/>
+                        <ItemCellCard id={ 4 } item={ equipment.belt } containerType="belt"/>
                     </Flex>
                     <Flex direction="column" justify="center" align="center" gap="2">
                         <Text size="1">Сапоги</Text>
-                        <ItemCell id={ 5 } item={ equipment.boots } containerType="boots"/>
+                        <ItemCellCard id={ 5 } item={ equipment.boots } containerType="boots"/>
                     </Flex>
                 </Flex>
                 <Flex width="50%" height="100%" direction="row" justify="center" align="center" gap="3">
                     <Flex direction="column" justify="center" align="center" gap="2">
                         <Text size="1">Шлем</Text>
-                        <ItemCell id={ 6 } item={ equipment.helmet } containerType="helmet"/>
+                        <ItemCellCard id={ 6 } item={ equipment.helmet } containerType="helmet"/>
                     </Flex>
                     <Flex direction="column" justify="center" align="center" gap="2">
                         <Text size="1">Наручи</Text>
-                        <ItemCell id={ 7 } item={ equipment.bracers } containerType="bracers"/>
+                        <ItemCellCard id={ 7 } item={ equipment.bracers } containerType="bracers"/>
                     </Flex>
                     <Flex direction="column" justify="center" align="center" gap="2">
                         <Text size="1">Левая рука</Text>
-                        <ItemCell id={ 8 } item={ equipment.leftHand } containerType="leftHand"/>
+                        <ItemCellCard id={ 8 } item={ equipment.leftHand } containerType="leftHand"/>
                     </Flex>
                     <Flex direction="column" justify="center" align="center" gap="2">
                         <Text size="1">Доспех</Text>
-                        <ItemCell id={ 9 } item={ equipment.chestArmor } containerType="chestArmor"/>
+                        <ItemCellCard id={ 9 } item={ equipment.chestArmor } containerType="chestArmor"/>
                     </Flex>
                     <Flex direction="column" justify="center" align="center" gap="2">
                         <Text size="1">Поножи</Text>
-                        <ItemCell id={ 10 } item={ equipment.footArmor } containerType="footArmor"/>
+                        <ItemCellCard id={ 10 } item={ equipment.footArmor } containerType="footArmor"/>
                     </Flex>
                 </Flex>
             </Flex>

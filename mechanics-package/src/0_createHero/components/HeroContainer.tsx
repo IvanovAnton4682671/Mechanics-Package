@@ -1,6 +1,6 @@
 import React from "react";
 import type { HeroContainerProps } from "../types/interfaces";
-import type { myHeroStatEn, myHeroStat } from "../../entities/heroes/types";
+import type { myHeroStatName, myHeroStat } from "../../entities/heroes/types";
 import { Flex, TextField, DataList, Text, Dialog, Button } from "@radix-ui/themes";
 import Message from "./Message";
 
@@ -30,7 +30,7 @@ function HeroContainer({ hero }: HeroContainerProps) {
             <Flex width="30%" height="100%" justify="center" align="center">
                 <DataList.Root>
                     {
-                        (Object.entries(hero.stats) as Array<[myHeroStatEn, myHeroStat]>).map(
+                        (Object.entries(hero.stats) as Array<[myHeroStatName, myHeroStat]>).map(
                             ([statKey, { statRu, statValue }]) => (
                                 <DataList.Item key={ statKey }>
                                     <DataList.Label>{ statRu }</DataList.Label>

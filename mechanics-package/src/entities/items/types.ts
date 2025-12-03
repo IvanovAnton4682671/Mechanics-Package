@@ -1,12 +1,7 @@
 import type { myContainer } from "../containersForItems/types";
 import type { myHeroType } from "../heroes/types";
-import type {
-    myEquipmentType,
-    myEquipmentTypeRu,
-    myEquipmentRarity,
-    myEquipmentRarityRu,
-    myEquipmentRarityColor
-} from "./equipment/types";
+import type { myEquipmentType, myEquipmentTypeRu, myEquipmentRarity, myEquipmentRarityRu, myEquipmentRarityColor } from "./equipment/types";
+import type { myKnightEquipmentType } from "./equipment/knightEquipment/types";
 
 /**
  * Тип, описывающий список контейнеров, куда можно переместить определённый предмет
@@ -21,6 +16,7 @@ export type myItem = {
     class: myHeroType;
     name: string;
     type: myEquipmentType;
+    heroItemType: myKnightEquipmentType;
     typeRu: myEquipmentTypeRu;
     rarity: myEquipmentRarity;
     rarityRu: myEquipmentRarityRu;

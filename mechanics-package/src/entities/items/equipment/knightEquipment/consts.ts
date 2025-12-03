@@ -1,156 +1,129 @@
-import type { myItem } from "../../types";
-import { EQUIPMENT_RARITY_COLORS } from "../consts";
-import { KNIGHT_EQUIPMENT_IMAGES } from "./images/consts";
+import type { myEquipmentItemBase } from "../types";
 import { EQUIPMENT_RULES } from "../consts";
+import { KNIGHT_EQUIPMENT_IMAGES } from "./images/consts";
+import type { myItem } from "../../types";
+import { getEquipmentItem } from "../utils";
 
 /**
  * Вся экипировка героя рыцаря
  */
-export const KNIGHT_EQUIPMENT_ITEMS: Record<string, myItem> = {
+export const KNIGHT_EQUIPMENT_ITEMS: Array<myEquipmentItemBase> = [
     // Броня
-    knightBoots: {
+    {
         id: 1,
-        class: "knight",
-        name: "Сапоги рыцаря",
         type: "boots",
-        typeRu: "Сапоги",
-        rarity: "common",
-        rarityRu: "Обычная",
-        backgroundColor: EQUIPMENT_RARITY_COLORS.common,
-        image: KNIGHT_EQUIPMENT_IMAGES.knightBootsImage,
-        allowedContainers: EQUIPMENT_RULES.boots
+        heroItemType: "boots",
+        allowedContainers: EQUIPMENT_RULES.boots,
+        name: "Сапоги рыцаря",
+        image: KNIGHT_EQUIPMENT_IMAGES.knightBootsImage
     },
-    knightFootArmor: {
+    {
         id: 2,
-        class: "knight",
-        name: "Поножи рыцаря",
         type: "footArmor",
-        typeRu: "Поножи",
-        rarity: "uncommon",
-        rarityRu: "Необычная",
-        backgroundColor: EQUIPMENT_RARITY_COLORS.uncommon,
-        image: KNIGHT_EQUIPMENT_IMAGES.knightFootArmorImage,
-        allowedContainers: EQUIPMENT_RULES.footArmor
+        heroItemType: "footArmor",
+        allowedContainers: EQUIPMENT_RULES.footArmor,
+        name: "Поножи рыцаря",
+        image: KNIGHT_EQUIPMENT_IMAGES.knightFootArmorImage
     },
-    knightBelt: {
+    {
         id: 3,
-        class: "knight",
-        name: "Пояс рыцаря",
         type: "belt",
-        typeRu: "Пояс",
-        rarity: "rare",
-        rarityRu: "Редкая",
-        backgroundColor: EQUIPMENT_RARITY_COLORS.rare,
-        image: KNIGHT_EQUIPMENT_IMAGES.knightBeltImage,
-        allowedContainers: EQUIPMENT_RULES.belt
+        heroItemType: "belt",
+        allowedContainers: EQUIPMENT_RULES.belt,
+        name: "Пояс рыцаря",
+        image: KNIGHT_EQUIPMENT_IMAGES.knightBeltImage
     },
-    knightChestArmor: {
+    {
         id: 4,
-        class: "knight",
-        name: "Доспех рыцаря",
         type: "chestArmor",
-        typeRu: "Доспех",
-        rarity: "unique",
-        rarityRu: "Уникальная",
-        backgroundColor: EQUIPMENT_RARITY_COLORS.unique,
-        image: KNIGHT_EQUIPMENT_IMAGES.knightChestArmorImage,
-        allowedContainers: EQUIPMENT_RULES.chestArmor
+        heroItemType: "chestArmor",
+        allowedContainers: EQUIPMENT_RULES.chestArmor,
+        name: "Доспех рыцаря",
+        image: KNIGHT_EQUIPMENT_IMAGES.knightChestArmorImage
     },
-    knightShoulderPads: {
+    {
         id: 5,
-        class: "knight",
-        name: "Наплечники рыцаря",
         type: "shoulderPads",
-        typeRu: "Наплечники",
-        rarity: "epic",
-        rarityRu: "Эпическая",
-        backgroundColor: EQUIPMENT_RARITY_COLORS.epic,
-        image: KNIGHT_EQUIPMENT_IMAGES.knightShoulderPadsImage,
-        allowedContainers: EQUIPMENT_RULES.shoulderPads
+        heroItemType: "shoulderPads",
+        allowedContainers: EQUIPMENT_RULES.shoulderPads,
+        name: "Наплечники рыцаря",
+        image: KNIGHT_EQUIPMENT_IMAGES.knightShoulderPadsImage
     },
-    knightBracers: {
+    {
         id: 6,
-        class: "knight",
-        name: "Наручи рыцаря",
         type: "bracers",
-        typeRu: "Наручи",
-        rarity: "legendary",
-        rarityRu: "Легендарная",
-        backgroundColor: EQUIPMENT_RARITY_COLORS.legendary,
-        image: KNIGHT_EQUIPMENT_IMAGES.knightBracersImage,
-        allowedContainers: EQUIPMENT_RULES.bracers
+        heroItemType: "bracers",
+        allowedContainers: EQUIPMENT_RULES.bracers,
+        name: "Наручи рыцаря",
+        image: KNIGHT_EQUIPMENT_IMAGES.knightBracersImage
     },
-    knightGloves: {
+    {
         id: 7,
-        class: "knight",
-        name: "Перчатки рыцаря",
         type: "gloves",
-        typeRu: "Перчатки",
-        rarity: "divine",
-        rarityRu: "Божественная",
-        backgroundColor: EQUIPMENT_RARITY_COLORS.divine,
-        image: KNIGHT_EQUIPMENT_IMAGES.knightGlovesImage,
-        allowedContainers: EQUIPMENT_RULES.gloves
+        heroItemType: "gloves",
+        allowedContainers: EQUIPMENT_RULES.gloves,
+        name: "Перчатки рыцаря",
+        image: KNIGHT_EQUIPMENT_IMAGES.knightGlovesImage
     },
-    knightHelmet: {
+    {
         id: 8,
-        class: "knight",
-        name: "Шлем рыцаря",
         type: "helmet",
-        typeRu: "Шлем",
-        rarity: "common",
-        rarityRu: "Обычная",
-        backgroundColor: EQUIPMENT_RARITY_COLORS.common,
-        image: KNIGHT_EQUIPMENT_IMAGES.knightHelmetImage,
-        allowedContainers: EQUIPMENT_RULES.helmet
+        heroItemType: "helmet",
+        allowedContainers: EQUIPMENT_RULES.helmet,
+        name: "Шлем рыцаря",
+        image: KNIGHT_EQUIPMENT_IMAGES.knightHelmetImage
     },
-    // Оружие
-    knightSword: {
+    // Одноручное оружие
+    {
         id: 9,
-        class: "knight",
+        type: "oneHandWeapon",
+        heroItemType: "sword",
+        allowedContainers: EQUIPMENT_RULES.oneHandWeapon,
         name: "Одноручный меч рыцаря",
-        type: "oneHandWeapon",
-        typeRu: "Одноручное оружие",
-        rarity: "uncommon",
-        rarityRu: "Необычная",
-        backgroundColor: EQUIPMENT_RARITY_COLORS.uncommon,
-        image: KNIGHT_EQUIPMENT_IMAGES.knightSwordImage,
-        allowedContainers: EQUIPMENT_RULES.oneHandWeapon
+        image: KNIGHT_EQUIPMENT_IMAGES.knightSwordImage
     },
-    knightMace: {
+    {
         id: 10,
-        class: "knight",
-        name: "Одноручная булава рыцаря",
         type: "oneHandWeapon",
-        typeRu: "Одноручное оружие",
-        rarity: "rare",
-        rarityRu: "Редкая",
-        backgroundColor: EQUIPMENT_RARITY_COLORS.rare,
-        image: KNIGHT_EQUIPMENT_IMAGES.knightMaceImage,
-        allowedContainers: EQUIPMENT_RULES.oneHandWeapon
+        heroItemType: "mace",
+        allowedContainers: EQUIPMENT_RULES.oneHandWeapon,
+        name: "Одноручная булава рыцаря",
+        image: KNIGHT_EQUIPMENT_IMAGES.knightMaceImage
     },
-    knightLongSword: {
+    // Двуручное оружие
+    {
         id: 11,
-        class: "knight",
-        name: "Двуручный рыцаря",
         type: "twoHandWeapon",
-        typeRu: "Двуручное оружие",
-        rarity: "unique",
-        rarityRu: "Уникальная",
-        backgroundColor: EQUIPMENT_RARITY_COLORS.unique,
-        image: KNIGHT_EQUIPMENT_IMAGES.knightLongSwordImage,
-        allowedContainers: EQUIPMENT_RULES.twoHandWeapon
+        heroItemType: "longSword",
+        allowedContainers: EQUIPMENT_RULES.twoHandWeapon,
+        name: "Двуручный меч рыцаря",
+        image: KNIGHT_EQUIPMENT_IMAGES.knightLongSwordImage
     },
-    knightShield: {
-        id: 11,
-        class: "knight",
-        name: "Щит рыцаря",
+    // Вспомогательное оружие
+    {
+        id: 12,
         type: "offHand",
-        typeRu: "Вспомогательное",
-        rarity: "epic",
-        rarityRu: "Эпическая",
-        backgroundColor: EQUIPMENT_RARITY_COLORS.epic,
-        image: KNIGHT_EQUIPMENT_IMAGES.knightShieldImage,
-        allowedContainers: EQUIPMENT_RULES.offHand
+        heroItemType: "shield",
+        allowedContainers: EQUIPMENT_RULES.offHand,
+        name: "Щит рыцаря",
+        image: KNIGHT_EQUIPMENT_IMAGES.knightShieldImage
     }
-};
+];
+
+/**
+ * Массив тестовых предметов рыцаря
+ */
+export const TEST_KNIGHT_EQUIPMENT: Array<myItem> = [
+    getEquipmentItem("knight", "boots", "boots", "common"),
+    getEquipmentItem("knight", "footArmor", "footArmor", "uncommon"),
+    getEquipmentItem("knight", "belt", "belt", "rare"),
+    getEquipmentItem("knight", "chestArmor", "chestArmor", "unique"),
+    getEquipmentItem("knight", "shoulderPads", "shoulderPads", "epic"),
+    getEquipmentItem("knight", "bracers", "bracers", "legendary"),
+    getEquipmentItem("knight", "gloves", "gloves", "divine"),
+    getEquipmentItem("knight", "helmet", "helmet", "common"),
+    getEquipmentItem("knight", "oneHandWeapon", "sword", "uncommon"),
+    getEquipmentItem("knight", "oneHandWeapon", "mace", "rare"),
+    getEquipmentItem("knight", "twoHandWeapon", "longSword", "unique"),
+    getEquipmentItem("knight", "offHand", "shield", "epic")
+];

@@ -1,6 +1,6 @@
 import { useInventoryStore } from "../stores/inventoryStore";
 import { Flex, Text, Separator, Grid } from "@radix-ui/themes";
-import ItemCell from "./ItemCell";
+import ItemCellCard from "./ItemCellCard";
 
 /**
  * Компонент сундука - отображает сетку ячеек с предметами.
@@ -14,11 +14,11 @@ function Chest() {
         <Flex width="100%" height="100%" direction="column" justify="center" align="center" gap="3">
             <Text size="5">Сундук</Text>
             <Separator orientation="horizontal" size="4"/>
-            <Grid columns="8" gap="3">
+            <Grid columns="8">
                 {
                     // Проходим по всем ячейкам сундука и создаём компоненты ItemCell
                     chestItems.map((item, index) => (
-                        <ItemCell
+                        <ItemCellCard
                             key={ `chest-${ index }` } // Уникальный ключ для React
                             id={ index } // ID ячейки = её индекс в массиве
                             item={ item } // Предмет в ячейке (или null)

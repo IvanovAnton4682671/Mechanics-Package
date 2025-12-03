@@ -1,6 +1,6 @@
-import knightImage from "./knight_no_background.png";
-import thiefImage from "./thief_no_background.png";
-import wizardImage from "./wizard_no_background.png";
+import knightImage from "./knight.png";
+import thiefImage from "./thief.png";
+import wizardImage from "./wizard.png";
 
 /**
  * Вспомогательный тип, облегчает доступ к картинкам

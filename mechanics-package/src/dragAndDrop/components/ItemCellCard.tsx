@@ -3,7 +3,7 @@ import React from "react";
 import { useInventoryStore } from "../stores/inventoryStore";
 import { useDrag, useDrop } from "react-dnd";
 import { ITEM_TYPES } from "../types/consts";
-import { Flex } from "@radix-ui/themes";
+import { HoverCard, Flex, Text } from "@radix-ui/themes";
 
 /**
  * Компонент ячейки предмета, который может быть перетаскиваемым (draggable)
@@ -13,7 +13,7 @@ import { Flex } from "@radix-ui/themes";
  * @param item предмет в ячейке (или null, если ячейка пуста)
  * @param containerType тип контейнера (сундук, инвентарь, ячейка экипировки)
  */
-function ItemCell({ id, item, containerType } : ItemCellProps) {
+function ItemCellCard({ id, item, containerType } : ItemCellProps) {
     // Ref для DOM-элемента ячейки, необходим для работы Drag and Drop
     const ref = React.useRef<HTMLDivElement>(null);
     // Получаем метод перемещения предметов из хранилища
@@ -105,26 +105,52 @@ function ItemCell({ id, item, containerType } : ItemCellProps) {
     drag(drop(ref));
 
     return(
-        <Flex
-            ref={ ref }
-            width="75px"
-            height="75px"
-            direction="column"
-            justify="center"
-            align="center"
-            style={{
-                border: "1px solid",
-                borderColor: isOver ? "var(--accent-10)" : "var(--gray-a6)",
-                borderRadius: "var(--radius-5)",
-                opacity: isDragging ? 0.5 : 1,
-                backgroundColor: item ? item.backgroundColor : "var(--gray-a1)",
-                cursor: item ? 'grab' : 'default'
-            }}
-        >
-            {/* Отображаем картинку предмета или пустоту, если ячейка пуста */}
-            { item === null ? null : <img src={ item.image } alt="image" style={{ width: "100%", height: "100%" }}/> }
-        </Flex>
+        <HoverCard.Root>
+            <HoverCard.Trigger>
+                <Flex ref={ ref } width="64px" height="128px" justify="center" align="center" style={{
+                    overflow: "hidden",
+                    backgroundColor: item ? item.backgroundColor : "var(--gray-a1)",
+                    border: "1px solid",
+                    borderColor: isOver ? "var(--accent-10)" : "var(--gray-a6)",
+                    opacity: isDragging ? 0.5 : 1,
+                    cursor: item ? "grab" : "default"
+                }}>
+                    { item ?
+                        <img src={ item.image } alt="itemImage" style={{
+                            width: "auto",
+                            height: "auto",
+                            maxWidth: "100%",
+                            maxHeight: "100%",
+                            objectFit: "contain"
+                        }}/>
+                    : null }
+                </Flex>
+            </HoverCard.Trigger>
+            <HoverCard.Content side="left" style={{ borderRadius: "0", padding: "0" }}>
+                { item ?
+                    <Flex width="256px" height="512px" direction="column" justify="center" align="center" style={{
+                        backgroundColor: item.backgroundColor,
+                        border: "1px solid",
+                        borderColor: "var(--gray-a6)",
+                        padding: "10px"
+                    }}>
+                        <Flex width="50%" height="50%" justify="center" align="center" style={{ overflow: "hidden" }}>
+                            <img src={ item.image } alt="itemImage" style={{
+                                width: "100%",
+                                height: "100%",
+                                objectFit: "contain"
+                            }}/>
+                        </Flex>
+                        <Flex width="100%" height="50%" direction="column" justify="center" align="center">
+                            <Text size="2">{ item.name }</Text>
+                            <Text size="2">Тип: { item.typeRu }</Text>
+                            <Text size="2">Редкость: { item.rarityRu }</Text>
+                        </Flex>
+                    </Flex>
+                : null }
+            </HoverCard.Content>
+        </HoverCard.Root>
     )
 }
 
-export default ItemCell;
+export default ItemCellCard;

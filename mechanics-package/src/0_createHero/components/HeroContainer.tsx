@@ -19,7 +19,13 @@ function HeroContainer({ hero }: HeroContainerProps) {
         <Flex width="100%" height="100%" direction="row" justify="center" align="center">
             <Flex width="40%" height="100%" direction="column" justify="center" align="center" gap="3">
                 <Flex width="320px" height="560px">
-                    <img src={ hero.image } alt="hero" style={{ width: "100%", height: "100%" }}/>
+                    <img src={ hero.image } alt="hero" style={{
+                        width: "auto",
+                        height: "auto",
+                        maxWidth: "100%",
+                        maxHeight: "100%",
+                        objectFit: "contain"
+                    }}/>
                 </Flex>
                 <TextField.Root
                     placeholder="Имя героя"

@@ -31,6 +31,7 @@ export const CHEST_TEST_ITEMS: myItemArray = [
     null, null,
     null, null, null, null, null, null, null, null, null, null,
     null, null, null, null, null, null, null, null, null, null,
+    null, null, null, null, null, null, null, null, null, null,
     null, null, null, null, null, null, null, null, null, null
 ];
 
@@ -43,7 +44,8 @@ export const INVENTORY_TEST_ITEMS: myItemArray = [
     TEST_KNIGHT_EQUIPMENT[10],
     TEST_KNIGHT_EQUIPMENT[11],
     null, null, null, null, null, null, null, null, null, null,
-    null, null, null, null, null, null, null, null, null, null
+    null, null, null, null, null, null, null, null, null, null,
+    null, null, null, null, null, null
 ];
 
 /**

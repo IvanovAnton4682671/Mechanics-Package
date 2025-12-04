@@ -14,7 +14,7 @@ function Chest() {
         <Flex width="100%" height="100%" direction="column" justify="center" align="center" gap="3">
             <Text size="5">Сундук</Text>
             <Separator orientation="horizontal" size="4"/>
-            <Grid columns="8">
+            <Grid columns="10">
                 {
                     // Проходим по всем ячейкам сундука и создаём компоненты ItemCell
                     chestItems.map((item, index) => (

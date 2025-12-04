@@ -14,9 +14,11 @@ export const EQUIPMENT_RULES: Record<myEquipmentType, myAllowedContainers> = {
     bracers: ["chest", "inventory", "bracers"],
     gloves: ["chest", "inventory", "gloves"],
     helmet: ["chest", "inventory", "helmet"],
-    // Оружие
+    // Одноручное оружие
     oneHandWeapon: ["chest", "inventory", "rightHand", "leftHand"],
+    // Двуручное оружие
     twoHandWeapon: ["chest", "inventory", "rightHand"],
+    // Вспомогательное
     offHand: ["chest", "inventory", "leftHand"]
 };
 
@@ -33,9 +35,11 @@ export const EQUIPMENT_TYPES_RU: Record<myEquipmentType, myEquipmentTypeRu> = {
     bracers: "Наручи",
     gloves: "Перчатки",
     helmet: "Шлем",
-    // Оружие
+    // Одноручное оружие
     oneHandWeapon: "Одноручное оружие",
+    // Двуручное оружие
     twoHandWeapon: "Двуручное оружие",
+    // Вспомогательное
     offHand: "Вспомогательное"
 };
 
@@ -56,11 +60,11 @@ export const EQUIPMENT_RARITY_RU: Record<myEquipmentRarity, myEquipmentRarityRu>
  * Общие пары редкости-цвета для предметов экипировки
  */
 export const EQUIPMENT_RARITY_COLORS: Record<myEquipmentRarity, myEquipmentRarityColor> = {
-    common: "var(--gray-a5)",
-    uncommon: "var(--jade-a5)",
-    rare: "var(--yellow-a5)",
-    unique: "var(--purple-a5)",
-    epic: "var(--pink-a5)",
-    legendary: "var(--ruby-a5)",
-    divine: "var(--tomato-a5)"
+    common: "var(--gray-a3)",
+    uncommon: "var(--jade-a3)",
+    rare: "var(--yellow-a3)",
+    unique: "var(--purple-a3)",
+    epic: "var(--pink-a3)",
+    legendary: "var(--ruby-a3)",
+    divine: "var(--tomato-a3)"
 };

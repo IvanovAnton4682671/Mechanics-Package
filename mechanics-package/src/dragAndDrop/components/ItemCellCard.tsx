@@ -1,4 +1,4 @@
-import type { ItemCellProps, DragItem } from "../types/interfaces";
+import type { ItemCellCardProps, DragItem } from "../types/interfaces";
 import React from "react";
 import { useInventoryStore } from "../stores/inventoryStore";
 import { useDrag, useDrop } from "react-dnd";
@@ -13,7 +13,7 @@ import { HoverCard, Flex, Text } from "@radix-ui/themes";
  * @param item предмет в ячейке (или null, если ячейка пуста)
  * @param containerType тип контейнера (сундук, инвентарь, ячейка экипировки)
  */
-function ItemCellCard({ id, item, containerType } : ItemCellProps) {
+function ItemCellCard({ id, item, containerType } : ItemCellCardProps) {
     // Ref для DOM-элемента ячейки, необходим для работы Drag and Drop
     const ref = React.useRef<HTMLDivElement>(null);
     // Получаем метод перемещения предметов из хранилища
@@ -105,17 +105,17 @@ function ItemCellCard({ id, item, containerType } : ItemCellProps) {
     drag(drop(ref));
 
     return(
-        <HoverCard.Root>
+        <HoverCard.Root open={ item ? undefined : false }>
             <HoverCard.Trigger>
                 <Flex ref={ ref } width="64px" height="128px" justify="center" align="center" style={{
                     overflow: "hidden",
                     backgroundColor: item ? item.backgroundColor : "var(--gray-a1)",
                     border: "1px solid",
                     borderColor: isOver ? "var(--accent-10)" : "var(--gray-a6)",
-                    opacity: isDragging ? 0.5 : 1,
-                    cursor: item ? "grab" : "default"
+                    opacity: isDragging ? 0.5 : 1
                 }}>
-                    { item ?
+                    {
+                        item ?
                         <img src={ item.image } alt="itemImage" style={{
                             width: "auto",
                             height: "auto",
@@ -123,11 +123,13 @@ function ItemCellCard({ id, item, containerType } : ItemCellProps) {
                             maxHeight: "100%",
                             objectFit: "contain"
                         }}/>
-                    : null }
+                        : null
+                    }
                 </Flex>
             </HoverCard.Trigger>
             <HoverCard.Content side="left" style={{ borderRadius: "0", padding: "0" }}>
-                { item ?
+                {
+                    item ?
                     <Flex width="256px" height="512px" direction="column" justify="center" align="center" style={{
                         backgroundColor: item.backgroundColor,
                         border: "1px solid",
@@ -147,7 +149,8 @@ function ItemCellCard({ id, item, containerType } : ItemCellProps) {
                             <Text size="2">Редкость: { item.rarityRu }</Text>
                         </Flex>
                     </Flex>
-                : null }
+                    : null
+                }
             </HoverCard.Content>
         </HoverCard.Root>
     )

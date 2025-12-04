@@ -31,9 +31,11 @@ export const KNIGHT_EQUIPMENT_IMAGES: Record<myKnightEquipmentImages, string> = 
     knightBracersImage: knightBracersImage,
     knightGlovesImage: knightGlovesImage,
     knightHelmetImage: knightHelmetImage,
-    // Оружие
+    // Одноручное оружие
     knightSwordImage: knightSwordImage,
     knightMaceImage: knightMaceImage,
+    // Двуручное оружие
     knightLongSwordImage: knightLongSwordImage,
+    // Вспомогательное
     knightShieldImage: knightShieldImage
 };

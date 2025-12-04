@@ -10,7 +10,7 @@ import type { myItem } from "../../entities/items/types";
  * @field item - предмет, находящийся в ячейке (или null, если ячейка пуста)
  * @field containerType - тип контейнера, к которому принадлежит ячейка
  */
-export interface ItemCellProps {
+export interface ItemCellCardProps {
     id: number;
     item: myItemCell;
     containerType: myContainer;

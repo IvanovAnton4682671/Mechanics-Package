@@ -28,8 +28,8 @@ export type myEquipmentRarityRu = "Обычная" | "Необычная" | "Р�
 /**
  * Тип цвета редкости предметов экипировки
  */
-export type myEquipmentRarityColor = "var(--gray-a5)" | "var(--jade-a5)" | "var(--yellow-a5)" | "var(--purple-a5)"
-    | "var(--pink-a5)" | "var(--ruby-a5)" | "var(--tomato-a5)";
+export type myEquipmentRarityColor = "var(--gray-a3)" | "var(--jade-a3)" | "var(--yellow-a3)" | "var(--purple-a3)"
+    | "var(--pink-a3)" | "var(--ruby-a3)" | "var(--tomato-a3)";
 
 /**
  * Тип, описывающий базовый предмет экипировки

@@ -99,7 +99,7 @@ export const KNIGHT_EQUIPMENT_ITEMS: Array<myEquipmentItemBase> = [
         name: "Двуручный меч рыцаря",
         image: KNIGHT_EQUIPMENT_IMAGES.knightLongSwordImage
     },
-    // Вспомогательное оружие
+    // Вспомогательное
     {
         id: 12,
         type: "offHand",
@@ -114,6 +114,7 @@ export const KNIGHT_EQUIPMENT_ITEMS: Array<myEquipmentItemBase> = [
  * Массив тестовых предметов рыцаря
  */
 export const TEST_KNIGHT_EQUIPMENT: Array<myItem> = [
+    // Броня
     getEquipmentItem("knight", "boots", "boots", "common"),
     getEquipmentItem("knight", "footArmor", "footArmor", "uncommon"),
     getEquipmentItem("knight", "belt", "belt", "rare"),
@@ -122,8 +123,11 @@ export const TEST_KNIGHT_EQUIPMENT: Array<myItem> = [
     getEquipmentItem("knight", "bracers", "bracers", "legendary"),
     getEquipmentItem("knight", "gloves", "gloves", "divine"),
     getEquipmentItem("knight", "helmet", "helmet", "common"),
+    // Одноручное оружие
     getEquipmentItem("knight", "oneHandWeapon", "sword", "uncommon"),
     getEquipmentItem("knight", "oneHandWeapon", "mace", "rare"),
+    // Двуручное оружие
     getEquipmentItem("knight", "twoHandWeapon", "longSword", "unique"),
+    // Вспомогательное
     getEquipmentItem("knight", "offHand", "shield", "epic")
 ];

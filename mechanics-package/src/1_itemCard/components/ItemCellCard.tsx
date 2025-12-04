@@ -3,7 +3,7 @@ import { HoverCard, Flex, Text } from "@radix-ui/themes";
 
 function ItemCellCard({ item }: ItemCellCardProps) {
     return(
-        <HoverCard.Root>
+        <HoverCard.Root open={ item ? undefined : false }>
             <HoverCard.Trigger>
                 <Flex width="64px" height="128px" justify="center" align="center" style={{
                     overflow: "hidden",
@@ -11,7 +11,8 @@ function ItemCellCard({ item }: ItemCellCardProps) {
                     border: "1px solid",
                     borderColor: "var(--gray-a6)"
                 }}>
-                    { item ?
+                    {
+                        item ?
                         <img src={ item.image } alt="itemImage" style={{
                             width: "auto",
                             height: "auto",
@@ -19,11 +20,13 @@ function ItemCellCard({ item }: ItemCellCardProps) {
                             maxHeight: "100%",
                             objectFit: "contain"
                         }}/>
-                    : null }
+                        : null
+                    }
                 </Flex>
             </HoverCard.Trigger>
             <HoverCard.Content side="left" style={{ borderRadius: "0", padding: "0" }}>
-                { item ?
+                {
+                    item ?
                     <Flex width="256px" height="512px" direction="column" justify="center" align="center" style={{
                         backgroundColor: item.backgroundColor,
                         border: "1px solid",
@@ -43,7 +46,8 @@ function ItemCellCard({ item }: ItemCellCardProps) {
                             <Text size="2">Редкость: { item.rarityRu }</Text>
                         </Flex>
                     </Flex>
-                : null }
+                    : null
+                }
             </HoverCard.Content>
         </HoverCard.Root>
     )

@@ -1,19 +1,23 @@
-import { Flex, Dialog, Button } from "@radix-ui/themes";
-import CreationMenu from "./components/CreationMenu";
+import React from "react";
+import type { myHero } from "../entities/heroes/types";
+import { HEROES } from "../entities/heroes/consts";
+import { Flex, Text, Button } from "@radix-ui/themes";
+import HeroContainer from "./components/HeroContainer";
 
 function Main() {
+    const [currentHero, setCurrentHero] = React.useState<myHero>(HEROES.knight);
+
     return(
-        <Flex width="100%" height="100%" direction="row" justify="center" align="center" gap="5">
-            <Dialog.Root>
-                <Dialog.Trigger>
-                    <Button variant="surface">Меню создания героя</Button>
-                </Dialog.Trigger>
-                <Dialog.Content maxWidth="100%" maxHeight="100%" style={{ width: "85vw", height: "85vh", overflow: "hidden" }}>
-                    <Dialog.Title/>
-                    <Dialog.Description/>
-                    <CreationMenu/>
-                </Dialog.Content>
-            </Dialog.Root>
+        <Flex width="100%" height="100%" direction="row">
+            <Flex width="20%" height="100%" direction="column" justify="center" align="center" gap="3">
+                <Text size="8">Выбор героя</Text>
+                <Button variant="soft" onClick={ () => setCurrentHero(HEROES.knight) }>Рыцарь</Button>
+                <Button variant="soft" onClick={ () => setCurrentHero(HEROES.thief) }>Разбойник</Button>
+                <Button variant="soft" onClick={ () => setCurrentHero(HEROES.wizard) }>Волшебник</Button>
+            </Flex>
+            <Flex width="80%" height="100%" justify="center" align="center">
+                <HeroContainer hero={ currentHero }/>
+            </Flex>
         </Flex>
     )
 };

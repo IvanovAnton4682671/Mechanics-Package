@@ -9,11 +9,13 @@ function Main() {
 
     return(
         <Flex width="100%" height="100%" direction="row">
-            <Flex width="20%" height="100%" direction="column" justify="center" align="center" gap="3">
+            <Flex width="20%" height="100%" direction="column" justify="center" align="center" gap="7">
                 <Text size="8">Выбор героя</Text>
-                <Button variant="soft" onClick={ () => setCurrentHero(HEROES.knight) }>Рыцарь</Button>
-                <Button variant="soft" onClick={ () => setCurrentHero(HEROES.thief) }>Разбойник</Button>
-                <Button variant="soft" onClick={ () => setCurrentHero(HEROES.wizard) }>Волшебник</Button>
+                <Flex direction="column" justify="center" align="center" gap="3">
+                    <Button variant="soft" onClick={ () => setCurrentHero(HEROES.knight) }>Рыцарь</Button>
+                    <Button variant="soft" onClick={ () => setCurrentHero(HEROES.thief) }>Разбойник</Button>
+                    <Button variant="soft" onClick={ () => setCurrentHero(HEROES.wizard) }>Волшебник</Button>
+                </Flex>
             </Flex>
             <Flex width="80%" height="100%" justify="center" align="center">
                 <HeroContainer hero={ currentHero }/>

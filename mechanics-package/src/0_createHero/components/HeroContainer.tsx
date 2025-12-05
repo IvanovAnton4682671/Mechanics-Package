@@ -33,7 +33,7 @@ function HeroContainer({ hero }: HeroContainerProps) {
                     onChange={ (event: React.ChangeEvent<HTMLInputElement>) => setHeroName(event.target.value) }
                 />
             </Flex>
-            <Flex width="30%" height="100%" direction="column" justify="center" align="center" gap="3">
+            <Flex width="30%" height="100%" direction="column" justify="center" align="center" gap="7">
                 <Text size="7">Характеристики:</Text>
                 <DataList.Root>
                     {
@@ -48,7 +48,7 @@ function HeroContainer({ hero }: HeroContainerProps) {
                     }
                 </DataList.Root>
             </Flex>
-            <Flex width="30%" height="100%" direction="column" justify="center" align="center" gap="3">
+            <Flex width="30%" height="100%" direction="column" justify="center" align="center" gap="7">
                 <Text size="7">Описание героя</Text>
                 <Text size="3" style={{ whiteSpace: "pre-line" }}>{ hero.description }</Text>
                 <Dialog.Root>

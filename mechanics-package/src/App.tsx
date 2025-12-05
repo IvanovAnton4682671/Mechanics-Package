@@ -6,6 +6,7 @@ import Header from "./Header";
 import CreateHero from "./0_createHero/Main";
 import ItemCard from "./1_itemCard/Main";
 import DragAndDrop from "./dragAndDrop/Main";
+import DragAndDropFull from "./1_dragAndDrop/Main";
 
 function App() {
     // Состояние для смены темы
@@ -34,13 +35,14 @@ function App() {
     return (
         <Theme appearance={ currentTheme } scaling="100%" radius="medium" accentColor={ currentTheme === "light" ? "blue" : "mint" }>
             <Flex width="100vw" height="100vh" direction="column">
-                <Flex width="100%" height="10%">
+                <Flex width="100%" height="5%">
                     <Header changeTheme={ changeTheme } changePage={ changePage }/>
                 </Flex>
-                <Flex width="100%" height="90%">
+                <Flex width="100%" height="95%">
                     { currentPage === "createHero" && <CreateHero/> }
                     { currentPage === "itemCard" && <ItemCard/> }
                     { currentPage === "dragAndDrop" && <DragAndDrop/> }
+                    { currentPage === "dragAndDropFull" && <DragAndDropFull/> }
                 </Flex>
             </Flex>
         </Theme>

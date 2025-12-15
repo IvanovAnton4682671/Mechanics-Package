@@ -5,6 +5,7 @@ import type { myItem } from "../../entities/items/types";
  */
 export interface ItemCellCardProps {
     item: myItem | null;
+    backgroundImage: string | null;
 };
 
 /**

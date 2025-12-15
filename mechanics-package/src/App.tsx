@@ -5,8 +5,8 @@ import { Theme, Flex } from "@radix-ui/themes";
 import Header from "./Header";
 import CreateHero from "./0_createHero/Main";
 import ItemCard from "./1_itemCard/Main";
+import DragAndDropFull from "./2_dragAndDrop/Main";
 import DragAndDrop from "./dragAndDrop/Main";
-import DragAndDropFull from "./1_dragAndDrop/Main";
 
 function App() {
     // Состояние для смены темы

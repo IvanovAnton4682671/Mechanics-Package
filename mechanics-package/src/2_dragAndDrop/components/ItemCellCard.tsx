@@ -1,7 +1,7 @@
 import type { ItemCellCardProps } from "../types/interfaces";
 import { HoverCard, Flex, Text } from "@radix-ui/themes";
 
-function ItemCellCard({ item }: ItemCellCardProps) {
+function ItemCellCard({ item, backgroundImage }: ItemCellCardProps) {
     return(
         <HoverCard.Root open={ item ? undefined : false }>
             <HoverCard.Trigger>
@@ -20,7 +20,18 @@ function ItemCellCard({ item }: ItemCellCardProps) {
                             maxHeight: "100%",
                             objectFit: "contain"
                         }}/>
-                        : null
+                        :
+                        backgroundImage ?
+                        <img src={ backgroundImage } alt="slotBackground" style={{
+                            width: "auto",
+                            height: "auto",
+                            maxWidth: "100%",
+                            maxHeight: "100%",
+                            objectFit: "contain",
+                            opacity: "0.2"
+                        }}/>
+                        :
+                        null
                     }
                 </Flex>
             </HoverCard.Trigger>

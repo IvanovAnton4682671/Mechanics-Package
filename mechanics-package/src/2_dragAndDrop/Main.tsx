@@ -6,8 +6,10 @@ import Inventory from "./components/Inventory";
 import Chest from "./components/Chest";
 
 function Main() {
+    // Состояние инвентаря
     const [isInventoryOpen, setInventoryOpen] = React.useState<boolean>(false);
 
+    // Состояние сундука
     const [isChestOpen, setChestOpen] = React.useState<boolean>(false);
 
     return(

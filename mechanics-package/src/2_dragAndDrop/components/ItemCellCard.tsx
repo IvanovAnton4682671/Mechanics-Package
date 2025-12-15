@@ -6,7 +6,6 @@ import { ITEM_TYPES } from "../types/consts";
 import { HoverCard, Flex, Text } from "@radix-ui/themes";
 
 function ItemCellCard({ id, item, backgroundImage, containerType }: ItemCellCardProps) {
-
     // Ref для DOM-элемента ячейки, необходим для работы Drag and Drop
     const ref = React.useRef<HTMLDivElement>(null);
     // Получаем метод перемещения предметов из хранилища

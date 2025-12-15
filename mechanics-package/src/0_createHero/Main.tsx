@@ -5,6 +5,7 @@ import { Flex, Text, Button } from "@radix-ui/themes";
 import HeroContainer from "./components/HeroContainer";
 
 function Main() {
+    // Состояние активного героя
     const [currentHero, setCurrentHero] = React.useState<myHero>(HEROES.knight);
 
     return(

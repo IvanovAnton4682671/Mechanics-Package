@@ -39,8 +39,8 @@ export const HEROES: Record<myHeroType, myHero> = {
         image: HEROES_IMAGES.wizardImage,
         name: null,
         stats: {
-            health: { statRu: "Здоровье", statValue: 70 },
-            mana: { statRu: "Мана", statValue: 80 },
+            health: { statRu: "Здоровье", statValue: 100 },
+            mana: { statRu: "Мана", statValue: 50 },
             strength: { statRu: "Сила", statValue: 4 },
             agility: { statRu: "Ловкость", statValue: 4 },
             intelligence: { statRu: "Интеллект", statValue: 10 }

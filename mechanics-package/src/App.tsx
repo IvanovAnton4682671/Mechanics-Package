@@ -10,6 +10,7 @@ import DragAndDrop from "./2_dragAndDrop/Main";
 function App() {
     // Состояние для смены темы
     const [currentTheme, setTheme] = React.useState<myTheme>("light");
+
     // Состояние для смены страницы
     const [currentPage, setPage] = React.useState<myPage>("createHero");
 

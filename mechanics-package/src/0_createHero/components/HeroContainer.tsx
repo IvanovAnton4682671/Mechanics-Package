@@ -7,6 +7,7 @@ import Message from "./Message";
 function HeroContainer({ hero }: HeroContainerProps) {
     // Состояние для установки имени героя
     const [heroName, setHeroName] = React.useState<string>(hero.name ?? "");
+
     // Проверки имени на пустоту
     const isHeroNameFilled = heroName.trim().length > 0;
 
